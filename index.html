@@ -35,43 +35,50 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 	<header class="header">
 		<div class="header__container">
-			<h1>Global Music Finder</h1>
+			<h1 class="header__title">Global Music Finder</h1>
 		</div>
 	</header>
 	<main class="main">
-		<div class="language">
-			<!-- Input radios for tabs -->
-			<input id="english" class="language__radio" type="radio" name="language" checked>
-			<input id="spanish" class="language__radio" type="radio" name="language">
-			<input id="german" class="language__radio" type="radio" name="language">
-			<input id="french" class="language__radio" type="radio" name="language">
-			<input id="japanese" class="language__radio" type="radio" name="language">
-			<input id="korean" class="language__radio" type="radio" name="language">
-			<input id="chinese" class="language__radio" type="radio" name="language">
-			<!-- Tabs -->
-			<div class="language__tabs">
-				<label for="english" class="language__tab">English</label>
-				<label for="spanish" class="language__tab">Spanish</label>
-				<label for="german" class="language__tab">German</label>
-				<label for="french" class="language__tab">French</label>
-				<label for="japanese" class="language__tab">Japanese</label>
-				<label for="korean" class="language__tab">Korean</label>
-				<label for="chinese" class="language__tab">Chinese</label>
+		<div class="main__container">
+			<div class="language">
+				<!-- Input radios for tabs -->
+				<input id="english" class="language__radio" type="radio" name="language" checked>
+				<input id="spanish" class="language__radio" type="radio" name="language">
+				<input id="german" class="language__radio" type="radio" name="language">
+				<input id="french" class="language__radio" type="radio" name="language">
+				<input id="japanese" class="language__radio" type="radio" name="language">
+				<input id="korean" class="language__radio" type="radio" name="language">
+				<input id="chinese" class="language__radio" type="radio" name="language">
+				<!-- Tabs -->
+				<div class="language__tabs">
+					<div class="language__europe">
+						<label for="english" class="language__tab">English</label>
+						<label for="spanish" class="language__tab">Spanish</label>
+						<label for="german" class="language__tab">German</label>
+						<label for="french" class="language__tab">French</label>
+					</div>
+					<div class="language__asia">
+						<label for="japanese" class="language__tab">Japanese</label>
+						<label for="korean" class="language__tab">Korean</label>
+						<label for="chinese" class="language__tab">Chinese</label>
+					</div>
+				</div>
 			</div>
-		</div>
-		<form class="search-form">
-			<!-- Add a search icon with a pseudo-element later -->
-			<input id="search-box" class="search-form__input" type="text">
-			<label for="search-box" class="search-form__label visually-hidden">Search for artists or songs</label>
-			<button id="search-btn" class="search-form__btn">Search</button>
-		</form>
-		<div class="search-results">
-			<!-- Search results will be displayed here -->
+			<form id="search" class="search-form">
+				<!-- Add a search icon with a pseudo-element later -->
+				<input id="search-box" class="search-form__input" type="text" placeholder="Artists or song titles">
+				<label for="search-box" class="search-form__label">Search for artists or songs</label>
+				<button id="search-btn" class="search-form__btn">Search</button>
+			</form>
+			<div class="search-results">
+				<!-- Search results will be displayed here -->
+			</div>
 		</div>
 	</main>
 	<footer class="footer">
