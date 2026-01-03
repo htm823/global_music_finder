@@ -1,7 +1,5 @@
 #!/bin/bash
 
-chmod +x .github/hooks/*
-
 set -e
 
 echo "========================================="
