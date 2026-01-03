@@ -1,0 +1,13 @@
+# <type>: <subject>
+#
+# Types:
+# feat: New feature
+# fix: Bug fix (non-breaking)
+# docs: Documentation changes
+# bugfix: Bug fix
+# refactor: Code refactoring
+#
+# Example: feat: add user authentication
+#
+# Keep the subject line under 50 characters
+# Use imperative mood (e.g., "add" not "added" or "adds")

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+# Get the current branch name
+BRANCH_NAME=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+# Skip if this is a merge commit or amend
+if [ "$COMMIT_SOURCE" = "merge" ] || [ "$COMMIT_SOURCE" = "commit" ]; then
+    exit 0
+fi
+
+# Extract type from branch name (e.g., feat/#123_branch-name -> feat)
+if [[ $BRANCH_NAME =~ ^(feat|fix|docs|bugfix|refactor)/ ]]; then
+    TYPE="${BASH_REMATCH[1]}"
+
+    # Read the current commit message
+    CURRENT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+    # Check if message already has a type prefix
+    if [[ ! $CURRENT_MSG =~ ^(feat|fix|docs|bugfix|refactor): ]]; then
+        # Prepend the type to the commit message
+        echo "${TYPE}: ${CURRENT_MSG}" > "$COMMIT_MSG_FILE"
+    fi
+fi

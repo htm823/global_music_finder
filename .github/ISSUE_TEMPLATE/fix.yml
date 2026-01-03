@@ -1,0 +1,24 @@
+name: Fix
+description: Report a bug fix, feature update, or improvement
+title: 'Fix: '
+labels: ['fix']
+body:
+    - type: textarea
+      id: overview
+      attributes:
+          label: Overview
+          description: What needs to be fixed or improved?
+          placeholder: Describe the issue and what should be done
+      validations:
+          required: true
+
+    - type: textarea
+      id: tasks
+      attributes:
+          label: Tasks
+          description: What needs to be done?
+          placeholder: |
+              -
+              -
+      validations:
+          required: true

@@ -1,0 +1,24 @@
+name: Documentation
+description: Suggest documentation improvements
+title: 'Docs: '
+labels: ['docs']
+body:
+    - type: textarea
+      id: overview
+      attributes:
+          label: Overview
+          description: What documentation needs to be added or improved?
+          placeholder: Describe what's missing or needs updating
+      validations:
+          required: true
+
+    - type: textarea
+      id: tasks
+      attributes:
+          label: Tasks
+          description: What needs to be done?
+          placeholder: |
+              -
+              -
+      validations:
+          required: true

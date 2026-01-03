@@ -1,0 +1,61 @@
+name: PR Template Assistant
+
+on:
+    pull_request:
+        types: [opened]
+
+jobs:
+    update-pr-description:
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+            contents: read
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Extract branch type
+              id: extract
+              run: |
+                  BRANCH="${{ github.head_ref }}"
+
+                  # Extract type (feat, fix, etc.)
+                  TYPE=$(echo "$BRANCH" | grep -oP '^[a-z]+' || echo "feat")
+                  echo "type=${TYPE}" >> $GITHUB_OUTPUT
+
+                  # Extract issue number
+                  ISSUE_NUM=$(echo "$BRANCH" | grep -oP '#\K[0-9]+' || echo "")
+                  echo "issue=${ISSUE_NUM}" >> $GITHUB_OUTPUT
+
+            - name: Update PR title and description
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const type         = '${{ steps.extract.outputs.type }}';
+                      const issueNum     = '${{ steps.extract.outputs.issue }}';
+                      const currentTitle = context.payload.pull_request.title;
+
+                      // Remove existing type prefix first
+                      const cleanTitle = currentTitle.replace(/^(feat|fix|docs|bugfix|refactor):\s*/, '');
+
+                      // Generate PR title with type prefix
+                      const newTitle = `${type}: ${cleanTitle}`;
+
+                      // Generate PR body
+                      let body = `### What's new\n`;
+
+                      if (issueNum) {
+                        body += `- Closes #${issueNum}\n`;
+                      } else {
+                        body += `- \n`;
+                      }
+
+                      // Update PR
+                      await github.rest.pulls.update({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        pull_number: context.payload.pull_request.number,
+                        title: newTitle,
+                        body: body
+                      });

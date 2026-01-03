@@ -1,0 +1,24 @@
+name: Critical Bugfix
+description: Report a critical bug that needs immediate attention
+title: 'Bugfix: '
+labels: ['bugfix']
+body:
+    - type: textarea
+      id: overview
+      attributes:
+          label: Overview
+          description: What's the critical issue?
+          placeholder: Describe the critical bug and its impact
+      validations:
+          required: true
+
+    - type: textarea
+      id: tasks
+      attributes:
+          label: Tasks
+          description: What needs to be done?
+          placeholder: |
+              -
+              -
+      validations:
+          required: true

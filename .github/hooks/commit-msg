@@ -1,0 +1,32 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Define valid types
+VALID_TYPES="feat|fix|docs|bugfix|refactor"
+
+# Check if commit message follows the format
+if [[ ! $COMMIT_MSG =~ ^($VALID_TYPES):.+ ]]; then
+    echo "❌ Error: Commit message must start with a valid type"
+    echo ""
+    echo "Valid types: feat, fix, docs, bugfix, refactor"
+    echo "Format: <type>: <description>"
+    echo ""
+    echo "Examples:"
+    echo "  feat: add user authentication"
+    echo "  fix: resolve login redirect issue"
+    echo "  bugfix: correct calculation in payment module"
+    echo ""
+    exit 1
+fi
+
+# Check message length (subject line should be under 72 characters)
+SUBJECT_LINE=$(echo "$COMMIT_MSG" | head -n1)
+if [ ${#SUBJECT_LINE} -gt 72 ]; then
+    echo "⚠️  Warning: Subject line is longer than 72 characters"
+    echo "Current length: ${#SUBJECT_LINE}"
+    echo ""
+fi
+
+exit 0

@@ -1,0 +1,24 @@
+name: Refactoring
+description: Suggest code refactoring or improvements
+title: 'Refactor: '
+labels: ['refactor']
+body:
+    - type: textarea
+      id: overview
+      attributes:
+          label: Overview
+          description: What needs to be refactored and why?
+          placeholder: Describe the code that needs improvement and the reason
+      validations:
+          required: true
+
+    - type: textarea
+      id: tasks
+      attributes:
+          label: Tasks
+          description: What needs to be done?
+          placeholder: |
+              -
+              -
+      validations:
+          required: true
