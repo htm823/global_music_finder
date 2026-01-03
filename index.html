@@ -1,13 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Global Music Finder</title>
+
+	<!-- Primary Meta Tags -->
+	<title>Global Music Finder - Search Music Worldwide</title>
+	<meta name="title" content="Global Music Finder - Search Music Worldwide">
+	<meta name="description" content="A music search app to find and copy song titles and artist names from around the world.">
+	<meta name="keywords" content="music search, international music, song finder, artist search, K-pop, J-pop, global music">
+	<meta name="author" content="Hatsumi Shimizu">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Global Music Finder">
+	<meta property="og:description" content="A music search app to find and copy song titles and artist names from around the world.">
+	<!-- Add image & url later -->
+	<!-- <meta property="og:image" content="https://example.vercel.app/og-image.png">
+	<meta property="og:url" content="https://example.vercel.app"> -->
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Global Music Finder">
+	<meta name="twitter:description" content="A music search app to find and copy song titles and artist names from around the world.">
+	<!-- <meta name="twitter:image" content="https://example.vercel.app/og-image.png"> -->
+
+	<!-- Favicon (add later) -->
+	<!-- <link rel="icon" type="image/png" href="/favicon.png"> -->
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-	<header></header>
-	<main></main>
-	<footer></footer>
+	<header class="header">
+		<div class="header__container">
+			<h1>Global Music Finder</h1>
+		</div>
+	</header>
+	<main class="main">
+		<div class="language">
+			<!-- Input radios for tabs -->
+			<input id="english" class="language__radio" type="radio" name="language" checked>
+			<input id="spanish" class="language__radio" type="radio" name="language">
+			<input id="german" class="language__radio" type="radio" name="language">
+			<input id="french" class="language__radio" type="radio" name="language">
+			<input id="japanese" class="language__radio" type="radio" name="language">
+			<input id="korean" class="language__radio" type="radio" name="language">
+			<input id="chinese" class="language__radio" type="radio" name="language">
+			<!-- Tabs -->
+			<div class="language__tabs">
+				<label for="english" class="language__tab">English</label>
+				<label for="spanish" class="language__tab">Spanish</label>
+				<label for="german" class="language__tab">German</label>
+				<label for="french" class="language__tab">French</label>
+				<label for="japanese" class="language__tab">Japanese</label>
+				<label for="korean" class="language__tab">Korean</label>
+				<label for="chinese" class="language__tab">Chinese</label>
+			</div>
+		</div>
+		<form class="search-form">
+			<!-- Add a search icon with a pseudo-element later -->
+			<input id="search-box" class="search-form__input" type="text">
+			<label for="search-box" class="search-form__label visually-hidden">Search for artists or songs</label>
+			<button id="search-btn" class="search-form__btn">Search</button>
+		</form>
+		<div class="search-results">
+			<!-- Search results will be displayed here -->
+		</div>
+	</main>
+	<footer class="footer">
+		<div class="footer__container">
+			<small class="footer__copyright">&copy; 2026 Global Music Finder</small>
+		</div>
+	</footer>
+	<script src="main.js"></script>
 </body>
+
 </html>

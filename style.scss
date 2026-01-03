@@ -1,7 +1,19 @@
 @charset 'UTF-8';
 
+*,
+::before,
+::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 10px;
+}
+
 :root {
-	/* Brand Colours - Navy (UK Flag Blue Base) */
+	/* Brand Colours - Navy */
 	--brand-colour-100: #e8ebf3;
 	--brand-colour-300: #7b8fc9;
 	--brand-colour-primary: #012169;
@@ -42,4 +54,29 @@
 
 	/* Neutral */
 	--colour-white: #ffffff;
+
+	/* Font size */
+	--font-size-primary: 1.8rem;
+
+	/* Font family */
+	--font-family: 'Inter', sans-serif;
+}
+
+body {
+	background-color: var(--bg-colour-100);
+	font-size: var(--font-size-primary);
+	color: var(--text-colour-primary);
+	font-family: var(--font-family);
+}
+
+// Only for screen reader
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
 }
