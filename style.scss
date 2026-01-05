@@ -20,9 +20,8 @@ html {
 	--brand-colour-700: #011852;
 	--brand-colour-900: #010f3b;
 
-	--brand-accent-light: #B8465A;
+	--brand-accent-light: #b8465a;
 	--brand-accent-primary: #9a3a4c;
-
 
 	/* Background Colours */
 	--bg-colour-100: #fafafa;
@@ -86,7 +85,6 @@ body {
 		color: var(--brand-colour-primary);
 		text-align: center;
 		margin: 0 0 7rem;
-
 	}
 }
 
@@ -102,52 +100,88 @@ body {
 		display: none;
 	}
 
-	&__radio[id='english']:checked {
+	&__contents {
+		margin: 7rem 0 0 0;
+	}
+
+	&__content {
+		display: none;
+	}
+
+	#english:checked {
 		& ~ .language__tabs .language__tab[for='english'] {
 			background-color: var(--brand-colour-primary);
 			color: var(--colour-lightest);
 		}
+
+		& ~ .language__contents .language__content[data-tab="english"] {
+			display: block;
+		}
 	}
 
-	&__radio[id='spanish']:checked {
+	#spanish:checked {
 		& ~ .language__tabs .language__tab[for='spanish'] {
 			background-color: var(--brand-colour-primary);
 			color: var(--colour-lightest);
 		}
+
+		& ~ .language__contents .language__content[data-tab="spanish"] {
+			display: block;
+		}
 	}
 
-	&__radio[id='german']:checked {
+	#german:checked {
 		& ~ .language__tabs .language__tab[for='german'] {
 			background-color: var(--brand-colour-primary);
 			color: var(--colour-lightest);
 		}
+
+		& ~ .language__contents .language__content[data-tab="german"] {
+			display: block;
+		}
 	}
 
-	&__radio[id='french']:checked {
+	#french:checked {
 		& ~ .language__tabs .language__tab[for='french'] {
 			background-color: var(--brand-colour-primary);
 			color: var(--colour-lightest);
 		}
+
+		& ~ .language__contents .language__content[data-tab="french"] {
+			display: block;
+		}
 	}
 
-	&__radio[id='japanese']:checked {
+	#japanese:checked {
 		& ~ .language__tabs .language__tab[for='japanese'] {
 			background-color: var(--brand-colour-primary);
 			color: var(--colour-lightest);
 		}
+
+		& ~ .language__contents .language__content[data-tab="japanese"] {
+			display: block;
+		}
 	}
 
-	&__radio[id='korean']:checked {
+	#korean:checked {
 		& ~ .language__tabs .language__tab[for='korean'] {
 			background-color: var(--brand-colour-primary);
 			color: var(--colour-lightest);
 		}
+
+		& ~ .language__contents .language__content[data-tab="korean"] {
+			display: block;
+		}
 	}
 
-	&__radio[id='chinese']:checked {
+	#chinese:checked {
 		& ~ .language__tabs .language__tab[for='chinese'] {
 			background-color: var(--brand-colour-primary);
 			color: var(--colour-lightest);
+		}
+
+		& ~ .language__contents .language__content[data-tab="chinese"] {
+			display: block;
 		}
 	}
 
@@ -195,12 +229,12 @@ body {
 	position: relative;
 
 	&::before {
-		content: "\f002";
+		content: '\f002';
 		display: block;
 		width: 2rem;
 		height: 2rem;
 		font-size: 2rem;
-		font-family: "Font Awesome 7 Free";
+		font-family: 'Font Awesome 7 Free';
 		font-weight: 900;
 		color: var(--border-colour-primary);
 		position: absolute;
@@ -242,10 +276,10 @@ body {
 		border: 0.2rem solid var(--brand-accent-primary);
 		background-color: var(--brand-accent-primary);
 		color: var(--colour-lightest);
-		padding: .8rem 0;
+		padding: 0.8rem 0;
 		border-radius: 0.4rem;
 		cursor: pointer;
-		transition: all .2s ease;
+		transition: all 0.2s ease;
 
 		&:hover {
 			background-color: var(--brand-accent-light);
