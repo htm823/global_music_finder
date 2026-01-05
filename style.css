@@ -17,7 +17,7 @@ html {
   --brand-colour-primary: #012169;
   --brand-colour-700: #011852;
   --brand-colour-900: #010f3b;
-  --brand-accent-light: #B8465A;
+  --brand-accent-light: #b8465a;
   --brand-accent-primary: #9a3a4c;
   /* Background Colours */
   --bg-colour-100: #fafafa;
@@ -82,33 +82,60 @@ body {
 .language__radio {
   display: none;
 }
-.language__radio[id=english]:checked ~ .language__tabs .language__tab[for=english] {
+.language__contents {
+  margin: 7rem 0 0 0;
+}
+.language__content {
+  display: none;
+}
+.language #english:checked ~ .language__tabs .language__tab[for=english] {
   background-color: var(--brand-colour-primary);
   color: var(--colour-lightest);
 }
-.language__radio[id=spanish]:checked ~ .language__tabs .language__tab[for=spanish] {
+.language #english:checked ~ .language__contents .language__content[data-tab=english] {
+  display: block;
+}
+.language #spanish:checked ~ .language__tabs .language__tab[for=spanish] {
   background-color: var(--brand-colour-primary);
   color: var(--colour-lightest);
 }
-.language__radio[id=german]:checked ~ .language__tabs .language__tab[for=german] {
+.language #spanish:checked ~ .language__contents .language__content[data-tab=spanish] {
+  display: block;
+}
+.language #german:checked ~ .language__tabs .language__tab[for=german] {
   background-color: var(--brand-colour-primary);
   color: var(--colour-lightest);
 }
-.language__radio[id=french]:checked ~ .language__tabs .language__tab[for=french] {
+.language #german:checked ~ .language__contents .language__content[data-tab=german] {
+  display: block;
+}
+.language #french:checked ~ .language__tabs .language__tab[for=french] {
   background-color: var(--brand-colour-primary);
   color: var(--colour-lightest);
 }
-.language__radio[id=japanese]:checked ~ .language__tabs .language__tab[for=japanese] {
+.language #french:checked ~ .language__contents .language__content[data-tab=french] {
+  display: block;
+}
+.language #japanese:checked ~ .language__tabs .language__tab[for=japanese] {
   background-color: var(--brand-colour-primary);
   color: var(--colour-lightest);
 }
-.language__radio[id=korean]:checked ~ .language__tabs .language__tab[for=korean] {
+.language #japanese:checked ~ .language__contents .language__content[data-tab=japanese] {
+  display: block;
+}
+.language #korean:checked ~ .language__tabs .language__tab[for=korean] {
   background-color: var(--brand-colour-primary);
   color: var(--colour-lightest);
 }
-.language__radio[id=chinese]:checked ~ .language__tabs .language__tab[for=chinese] {
+.language #korean:checked ~ .language__contents .language__content[data-tab=korean] {
+  display: block;
+}
+.language #chinese:checked ~ .language__tabs .language__tab[for=chinese] {
   background-color: var(--brand-colour-primary);
   color: var(--colour-lightest);
+}
+.language #chinese:checked ~ .language__contents .language__content[data-tab=chinese] {
+  display: block;
 }
 .language__tabs {
   display: flex;
