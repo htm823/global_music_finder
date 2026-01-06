@@ -1,28 +1,127 @@
 'use strict';
 
-// Base URL of iTunes Search API
-const API_BASE_URL = 'https://itunes.apple.com/search';
+// iTunes API
+const API_BASE_URL = 'https://itunes.apple.com/search/';
 
+// List of featured artists by country
+const artists = [
+	// English (US/UK artists, country code: gb)
+	{ artist: 'Adele', countryCode: 'gb' },
+	{ artist: 'Ed Sheeran', countryCode: 'gb' },
+	{ artist: 'Taylor Swift', countryCode: 'gb' },
+	{ artist: 'Beyoncé', countryCode: 'gb' },
+	{ artist: 'Harry Styles', countryCode: 'gb' },
+
+	// Spanish
+	{ artist: 'Rosalía', countryCode: 'es' },
+	{ artist: 'Bad Bunny', countryCode: 'es' },
+	{ artist: 'Alejandro Sanz', countryCode: 'es' },
+	{ artist: 'Pablo Alborán', countryCode: 'es' },
+	{ artist: 'Shakira', countryCode: 'es' },
+
+	// German
+	{ artist: 'Rammstein', countryCode: 'de' },
+	{ artist: 'Helene Fischer', countryCode: 'de' },
+	{ artist: 'Nena', countryCode: 'de' },
+	{ artist: 'Andreas Bourani', countryCode: 'de' },
+	{ artist: 'Herbert Grönemeyer', countryCode: 'de' },
+
+	// French
+	{ artist: 'Stromae', countryCode: 'fr' },
+	{ artist: 'Aya Nakamura', countryCode: 'fr' },
+	{ artist: 'Zaz', countryCode: 'fr' },
+	{ artist: 'Maître Gims', countryCode: 'fr' },
+	{ artist: 'Angèle', countryCode: 'fr' },
+
+	// Japanese
+	{ artist: '宇多田ヒカル', countryCode: 'jp' },
+	{ artist: 'YOASOBI', countryCode: 'jp' },
+	{ artist: 'あいみょん', countryCode: 'jp' },
+	{ artist: 'King Gnu', countryCode: 'jp' },
+	{ artist: 'Official髭男dism', countryCode: 'jp' },
+
+	// Korean
+	{ artist: 'BTS', countryCode: 'kr' },
+	{ artist: 'BLACKPINK', countryCode: 'kr' },
+	{ artist: 'IU', countryCode: 'kr' },
+	{ artist: 'Seventeen', countryCode: 'kr' },
+	{ artist: 'Stray Kids', countryCode: 'kr' },
+
+	// Chinese
+	{ artist: '周杰倫', countryCode: 'cn' },
+	{ artist: '鄧紫棋', countryCode: 'cn' },
+	{ artist: '五月天', countryCode: 'cn' },
+	{ artist: '張學友', countryCode: 'cn' },
+	{ artist: '王菲', countryCode: 'cn' },
+];
+
+// Filteres artists by country code
+function getArtistsByCountry(countryCode) {
+	return artists.filter((artist) => artist.countryCode === countryCode);
+}
+
+// Fetch music data for all supported countries
 async function fetchMusicData() {
 	try {
-		const searchTerm = 'Taylor Swift';
-		const url = `${API_BASE_URL}?term=${encodeURIComponent(searchTerm)}?term=${encodeURIComponent(searchTerm)}&country=US&media=music&entity=song`;
-		const response = await fetch(url);
+		const countryCodes = ['gb', 'es', 'de', 'fr', 'jp', 'kr', 'cn'];
 
-		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`);
+		for (const countryCode of countryCodes) {
+			const allTracks = await fetchMultipleArtists(countryCode);
+			displayResults(allTracks, countryCode);
 		}
-
-		const data = await response.json();
-
-		displayResults(data.results);
 	} catch (error) {
 		console.error('Error:', error);
 	}
 }
 
-function displayResults(tracks) {
-	const resultsContainer = document.getElementById('results');
+// Searches iTunes API for songs by a specific artist and country
+async function searchMusicByCountry(artist, countryCode) {
+	const searchTerm = artist;
+	const requestUrl = `${API_BASE_URL}?term=${encodeURIComponent(searchTerm)}&country=${countryCode}&media=music&entity=song&limit=20`;
+	const response = await fetch(requestUrl);
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+
+	const musicDataByCountry = await response.json();
+
+	const filteredResults = musicDataByCountry.results.filter((track) => {
+		return track.artistName.toLowerCase().includes(artist.toLowerCase());
+	});
+
+	return { results: filteredResults };
+}
+
+// Fetches tracks from multiple artists for a given country
+async function fetchMultipleArtists(countryCode) {
+	const countryArtists = getArtistsByCountry(countryCode);
+
+	const promises = countryArtists.map((artistInfo) => {
+		return searchMusicByCountry(artistInfo.artist, artistInfo.countryCode);
+	});
+
+	const results = await Promise.all(promises);
+	const allTracks = results.flatMap((result) => result.results);
+
+	return displayShuffledOrder(allTracks);
+}
+
+// Shuffles an array of tracks
+function displayShuffledOrder(tracks) {
+	const shuffled = [...tracks];
+
+	for (let i = shuffled.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+	}
+
+	return shuffled;
+}
+
+// Displays search results in the appropriate country tab
+function displayResults(tracks, countryCode) {
+	const resultsContainer = document.querySelector(`.search-results[data-country="${countryCode}"]`);
 	resultsContainer.innerHTML = '';
 
 	if (tracks.length === 0) {
@@ -30,20 +129,50 @@ function displayResults(tracks) {
 		return;
 	}
 
-	tracks.forEach((track) => {
-		resultsContainer.insertAdjacentHTML('beforeend', createTrackCard(track));
-	});
+	resultsContainer.insertAdjacentHTML('beforeend', createTrackTable(tracks));
 }
 
-function createTrackCard(track) {
+// Creates an HTML table structure for displaying tracks
+function createTrackTable(tracks) {
+	const tableHeader = `
+		<table class="search-results__table">
+			<thead>
+				<tr>
+					<th>Album</th>
+					<th>Track Title</th>
+					<th>Artist</th>
+					<th>Preview</th>
+				</tr>
+			</thead>
+			<tbody>`;
+
+	const trackRows = tracks.map((track) => {
+		return createTrackRows(track);
+	});
+
+	const tableFooter = `
+			</tbody>
+		</table>
+	`;
+
+	return tableHeader + trackRows.join('') + tableFooter;
+}
+
+// Creates a table row for a single track
+function createTrackRows(track) {
 	return `
-		<div class="results__track-card">
-			<img src="${track.artworkUrl100}" class="results__track-img" alt="${track.trackName} — ${track.artistName}">
-			<span class="results__track-name">${track.trackName}</span>
-			<span class="resutls__artist">${track.artistName}</span>
-			<audio controls src="${track.previewUrl}" class="results__preview"></audio>
-		</div>
+		<tr>
+			<td class="search-results__album">
+				<img src="${track.artworkUrl100}" alt="${track.collectionName}">
+			</td>
+			<td class="search-results__track-title">${track.trackName}</td>
+			<td class="search-results__artist">${track.artistName}</td>
+			<td class="search-results__preview">
+				<audio controls src="${track.previewUrl}" class="search-results__preview-audio"></audio>
+			</td>
+		</tr>
 	`;
 }
 
+// Initialise the application
 fetchMusicData();
