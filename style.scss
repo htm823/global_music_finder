@@ -114,7 +114,7 @@ body {
 			color: var(--colour-lightest);
 		}
 
-		& ~ .language__contents .language__content[data-tab="english"] {
+		& ~ .language__contents .language__content[data-tab='english'] {
 			display: block;
 		}
 	}
@@ -125,7 +125,7 @@ body {
 			color: var(--colour-lightest);
 		}
 
-		& ~ .language__contents .language__content[data-tab="spanish"] {
+		& ~ .language__contents .language__content[data-tab='spanish'] {
 			display: block;
 		}
 	}
@@ -136,7 +136,7 @@ body {
 			color: var(--colour-lightest);
 		}
 
-		& ~ .language__contents .language__content[data-tab="german"] {
+		& ~ .language__contents .language__content[data-tab='german'] {
 			display: block;
 		}
 	}
@@ -147,7 +147,7 @@ body {
 			color: var(--colour-lightest);
 		}
 
-		& ~ .language__contents .language__content[data-tab="french"] {
+		& ~ .language__contents .language__content[data-tab='french'] {
 			display: block;
 		}
 	}
@@ -158,7 +158,7 @@ body {
 			color: var(--colour-lightest);
 		}
 
-		& ~ .language__contents .language__content[data-tab="japanese"] {
+		& ~ .language__contents .language__content[data-tab='japanese'] {
 			display: block;
 		}
 	}
@@ -169,7 +169,7 @@ body {
 			color: var(--colour-lightest);
 		}
 
-		& ~ .language__contents .language__content[data-tab="korean"] {
+		& ~ .language__contents .language__content[data-tab='korean'] {
 			display: block;
 		}
 	}
@@ -180,7 +180,7 @@ body {
 			color: var(--colour-lightest);
 		}
 
-		& ~ .language__contents .language__content[data-tab="chinese"] {
+		& ~ .language__contents .language__content[data-tab='chinese'] {
 			display: block;
 		}
 	}
@@ -288,7 +288,69 @@ body {
 	}
 }
 
+.search-results {
+	padding: 7rem 0 0 0;
+
+	&__table {
+		border-radius: 0.4rem;
+		width: 100%;
+		border-collapse: collapse;
+		background-color: #fff;
+		box-shadow: 0.2rem 0 0.4rem rgba(204, 204, 204, 0.25), -0.2rem 0 0.2rem rgba(204, 204, 204, 0.25);
+
+		thead {
+			box-shadow: 0 0.2rem 0.4rem rgba(204, 204, 204, 0.25);
+
+			tr {
+				color: var(--text-colour-primary);
+
+				th {
+					border-left: 0.1rem solid rgba(204, 204, 204, 0.25);
+					padding: 1rem 0;
+
+					&:nth-child(1) {
+						border: none;
+					}
+				}
+			}
+		}
+
+		tbody {
+			tr {
+				color: var(--text-colour-700);
+
+				&:nth-child(1) {
+					border: none;
+				}
+
+				&:nth-child(2n) {
+					background-color: #fafafa;
+				}
+			}
+		}
+	}
+
+	&__album {
+		width: 14rem;
+		text-align: center;
+		padding: 2rem;
+	}
+
+	&__track-title,
+	&__artist {
+		width: calc((100% - 24rem) / 2);
+		padding: 0 0 0 3rem;
+	}
+
+	&__preview {
+		width: 14rem;
+		text-align: center;
+	}
+}
+
 .footer {
+	padding: 7rem 0 4rem 0;
+
 	&__container {
 		width: var(--content-width);
 		margin: 0 auto;
@@ -296,7 +358,7 @@ body {
 
 	&__copyright {
 		font-size: 1.6rem;
-		color: var(--text-colour-primary);
+		color: var(--text-colour-300);
 		display: block;
 		text-align: center;
 	}
