@@ -144,7 +144,7 @@ function createTrackTable(tracks) {
 					<th>Preview</th>
 				</tr>
 			</thead>
-			<tbody>`;
+			<tbody id="track-list">`;
 
 	const trackRows = tracks.map((track) => {
 		return createTrackRows(track);
@@ -165,8 +165,14 @@ function createTrackRows(track) {
 			<td class="search-results__album">
 				<img src="${track.artworkUrl100}" alt="${track.collectionName}">
 			</td>
-			<td class="search-results__track-title">${track.trackName}</td>
-			<td class="search-results__artist">${track.artistName}</td>
+			<td class="search-results__track-title">
+				<span class="search-results__track-title-text">${track.trackName}</span>
+				<button class="search-results__track-title-copy-btn" data-copy-text="${track.trackName}"><i class="fa-regular fa-clone"></i></button>
+			</td>
+			<td class="search-results__artist">
+				<span class="search-results__artist-text">${track.artistName}</span>
+				<button class="search-results__artist-copy-btn" data-copy-text="${track.artistName}"><i class="fa-regular fa-clone"></i></button>
+			</td>
 			<td class="search-results__preview">
 				<audio controls src="${track.previewUrl}" class="search-results__preview-audio"></audio>
 			</td>
@@ -176,3 +182,24 @@ function createTrackRows(track) {
 
 // Initialise the application
 fetchMusicData();
+
+document.addEventListener('DOMContentLoaded', () => {
+	setupCopyFeature();
+});
+
+function setupCopyFeature() {
+	const searchResultsContainers = document.querySelectorAll('.search-results');
+
+	searchResultsContainers.forEach(container => {
+		container.addEventListener('click', async (e) => {
+			const copyBtn = e.target.closest('[data-copy-text');
+			if (!copyBtn) return;
+
+			try {
+				await navigator.clipboard.writeText(copyBtn.dataset.copyText);
+			} catch (error) {
+				console.error('Copy failed:', error);
+			}
+		});
+	});
+}
