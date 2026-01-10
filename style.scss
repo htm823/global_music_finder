@@ -412,9 +412,13 @@ body {
 
 		&-wave {
 			display: none;
-			gap: 0.3rem; // ✅ 追加（バー同士の間隔）
-			align-items: center; // ✅ 追加
-			margin-left: 0.8rem; // ✅ padding → margin
+			gap: 0.3rem;
+			align-items: center;
+			margin-left: 0.8rem;
+
+			&.is-playing {
+				display: flex;
+			}
 
 			&-bar {
 				width: 0.3rem;
@@ -465,10 +469,6 @@ body {
 
 			&.playing .bi-pause-circle {
 				display: inline-block;
-			}
-
-			&.playing ~ .search-results__preview-wave {
-				display: flex;
 			}
 		}
 	}
