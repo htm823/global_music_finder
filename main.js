@@ -195,6 +195,7 @@ function createTrackRows(track) {
 // Initialise the application
 fetchMusicData();
 
+// Enables copy-to-clipboard functionality
 document.addEventListener('DOMContentLoaded', () => {
 	setupCopyFeature();
 });
@@ -204,7 +205,7 @@ function setupCopyFeature() {
 
 	searchResultsContainers.forEach((container) => {
 		container.addEventListener('click', async (e) => {
-			const copyBtn = e.target.closest('[data-copy-text');
+			const copyBtn = e.target.closest('[data-copy-text]');
 			if (!copyBtn) return;
 
 			try {
@@ -216,43 +217,59 @@ function setupCopyFeature() {
 	});
 }
 
-// Preview
-document.addEventListener('click', (e) => {
-	const previewBtn = e.target.closest('.search-results__preview-btn');
-	if (!previewBtn) return;
+// Toggles audio playback state
+function toggleAudio(audio) {
+	audio.paused ? audio.play() : audio.pause();
+}
 
-	const targetPreviewInner = previewBtn.closest('.search-results__preview-inner');
-	const targetAudio = targetPreviewInner.querySelector('.search-results__preview-audio');
+// Handles preview button clicks
+document.addEventListener(
+	'click',
+	(e) => {
+		const previewBtn = e.target.closest('.search-results__preview-btn');
+		if (!previewBtn) return;
 
-	const audioAll = document.querySelectorAll('.search-results__preview-audio');
-	audioAll.forEach((otherAudio) => {
-		if (otherAudio !== targetAudio && !otherAudio.paused) {
-			otherAudio.pause();
-			otherAudio.currentTime = 0;
+		const targetPreviewInner = previewBtn.closest('.search-results__preview-inner');
+		const targetAudio = targetPreviewInner.querySelector('.search-results__preview-audio');
 
-			const otherPreviewInner = otherAudio.closest('.search-results__preview-inner');
-			const otherBtn = otherPreviewInner.querySelector('.search-results__preview-btn');
+		const audioAll = document.querySelectorAll('.search-results__preview-audio');
+		audioAll.forEach((otherAudio) => {
+			if (otherAudio !== targetAudio && !otherAudio.paused) {
+				otherAudio.pause();
+				otherAudio.currentTime = 0;
+			}
+		});
 
-			otherBtn.classList.remove('playing');
-		}
-	});
+		toggleAudio(targetAudio);
+	},
+	true
+);
 
-	if (targetAudio.paused) {
-		targetAudio.play();
-		previewBtn.classList.add('playing');
-	} else {
-		targetAudio.pause();
-		previewBtn.classList.remove('playing');
-	}
+// Syncs UI state with audio events
+const previewStates = ['play', 'pause', 'ended'];
+previewStates.forEach((state) => {
+	document.addEventListener(state, handleAudioStateChange, true);
+});
 
-	document.addEventListener('ended', (e) => {
-		const playingAudio = e.target.classList.contains('search-results__preview-audio');
-		const playingPreviewInner = e.target.closest('.search-results__preview-inner');
+// Updates preview UI based on audio state
+function handleAudioStateChange(e) {
+	if (!e.target.classList.contains('search-results__preview-audio')) return;
 
-		if (playingAudio) {
-			const playingBtn = playingPreviewInner.querySelector('.search-results__preview-btn');
-			playingBtn.classList.remove('playing');
+	const previewInner = e.target.closest('.search-results__preview-inner');
+	const previewBtn = previewInner.querySelector('.search-results__preview-btn');
+	const wave = previewInner.querySelector('.search-results__preview-wave');
+
+	switch (e.type) {
+		case 'play':
+			previewBtn.classList.add('playing');
+			wave.classList.add('is-playing');
+			break;
+
+		case 'pause':
+		case 'ended':
+			previewBtn.classList.remove('playing');
+			wave.classList.remove('is-playing');
 			e.target.currentTime = 0;
-		}
-	});
-}, true);
+			break;
+	}
+}

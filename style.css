@@ -336,6 +336,9 @@ body {
   align-items: center;
   margin-left: 0.8rem;
 }
+.search-results__preview-wave.is-playing {
+  display: flex;
+}
 .search-results__preview-wave-bar {
   width: 0.3rem;
   background-color: var(--brand-colour-300);
@@ -376,9 +379,6 @@ body {
 }
 .search-results__preview-btn.playing .bi-pause-circle {
   display: inline-block;
-}
-.search-results__preview-btn.playing ~ .search-results__preview-wave {
-  display: flex;
 }
 
 @keyframes wave {
