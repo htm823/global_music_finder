@@ -174,7 +174,19 @@ function createTrackRows(track) {
 				<button class="search-results__artist-copy-btn" data-copy-text="${track.artistName}"><i class="fa-regular fa-clone"></i></button>
 			</td>
 			<td class="search-results__preview">
-				<audio controls src="${track.previewUrl}" class="search-results__preview-audio"></audio>
+				<div class="search-results__preview-inner">
+					<audio src="${track.previewUrl}" class="search-results__preview-audio"></audio>
+					<button class="search-results__preview-btn">
+						<i class="bi bi-play-circle"></i>
+						<i class="bi bi-pause-circle"></i>
+					</button>
+					<div class="search-results__preview-wave">
+  						<span class="search-results__preview-wave-bar"></span>
+  						<span class="search-results__preview-wave-bar"></span>
+  						<span class="search-results__preview-wave-bar"></span>
+  						<span class="search-results__preview-wave-bar"></span>
+  					</div>
+				</div>
 			</td>
 		</tr>
 	`;
@@ -190,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupCopyFeature() {
 	const searchResultsContainers = document.querySelectorAll('.search-results');
 
-	searchResultsContainers.forEach(container => {
+	searchResultsContainers.forEach((container) => {
 		container.addEventListener('click', async (e) => {
 			const copyBtn = e.target.closest('[data-copy-text');
 			if (!copyBtn) return;
@@ -203,3 +215,44 @@ function setupCopyFeature() {
 		});
 	});
 }
+
+// Preview
+document.addEventListener('click', (e) => {
+	const previewBtn = e.target.closest('.search-results__preview-btn');
+	if (!previewBtn) return;
+
+	const targetPreviewInner = previewBtn.closest('.search-results__preview-inner');
+	const targetAudio = targetPreviewInner.querySelector('.search-results__preview-audio');
+
+	const audioAll = document.querySelectorAll('.search-results__preview-audio');
+	audioAll.forEach((otherAudio) => {
+		if (otherAudio !== targetAudio && !otherAudio.paused) {
+			otherAudio.pause();
+			otherAudio.currentTime = 0;
+
+			const otherPreviewInner = otherAudio.closest('.search-results__preview-inner');
+			const otherBtn = otherPreviewInner.querySelector('.search-results__preview-btn');
+
+			otherBtn.classList.remove('playing');
+		}
+	});
+
+	if (targetAudio.paused) {
+		targetAudio.play();
+		previewBtn.classList.add('playing');
+	} else {
+		targetAudio.pause();
+		previewBtn.classList.remove('playing');
+	}
+
+	document.addEventListener('ended', (e) => {
+		const playingAudio = e.target.classList.contains('search-results__preview-audio');
+		const playingPreviewInner = e.target.closest('.search-results__preview-inner');
+
+		if (playingAudio) {
+			const playingBtn = playingPreviewInner.querySelector('.search-results__preview-btn');
+			playingBtn.classList.remove('playing');
+			e.target.currentTime = 0;
+		}
+	});
+}, true);
