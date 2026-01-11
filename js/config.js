@@ -32,23 +32,23 @@ export const artists = [
 	{ artist: 'Angèle', countryCode: 'fr' },
 
 	// Japanese
-	{ artist: '宇多田ヒカル', countryCode: 'jp' },
-	{ artist: 'YOASOBI', countryCode: 'jp' },
-	{ artist: 'あいみょん', countryCode: 'jp' },
+	{ artist: '宇多田ヒカル', countryCode: 'jp' }, // Hikaru Utada
+	{ artist: 'YOASOBI', countryCode: 'jp' }, // YOASOBI (Ikura & Ayase)
+	{ artist: 'あいみょん', countryCode: 'jp' }, // Aimyon
 	{ artist: 'King Gnu', countryCode: 'jp' },
-	{ artist: 'Official髭男dism', countryCode: 'jp' },
+	{ artist: 'Official髭男dism', countryCode: 'jp' }, // Official HIGE DANdism
 
 	// Korean
-	{ artist: 'BTS', countryCode: 'kr' },
+	{ artist: '방탄소년단', countryCode: 'kr' }, // BTS
 	{ artist: 'BLACKPINK', countryCode: 'kr' },
-	{ artist: 'IU', countryCode: 'kr' },
-	{ artist: 'Seventeen', countryCode: 'kr' },
+	{ artist: '아이유', countryCode: 'kr' }, // IU
+	{ artist: '세븐틴', countryCode: 'kr' }, //SEVENTEEN
 	{ artist: 'Stray Kids', countryCode: 'kr' },
 
 	// Chinese
-	{ artist: '周杰倫', countryCode: 'tw' },
-	{ artist: '五月天', countryCode: 'tw' },
-	{ artist: '蔡依林', countryCode: 'tw' },
-	{ artist: '林俊傑', countryCode: 'tw' },
-	{ artist: '陳奕迅', countryCode: 'tw' },
+	{ artist: '周杰倫', countryCode: 'tw' }, // Jay Chou
+	{ artist: '五月天', countryCode: 'tw' }, // Mayday
+	{ artist: '蔡依林', countryCode: 'tw' }, // Jolin Tsai
+	{ artist: '林俊傑', countryCode: 'tw' }, // JJ Lin
+	{ artist: '陳奕迅', countryCode: 'tw' }, // Eason Chan
 ];
