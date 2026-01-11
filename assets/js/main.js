@@ -4,6 +4,9 @@ import{ fetchMultipleArtists, searchByUserQuery } from './api.js';
 import { displayResults, showLoading, showError } from './display.js';
 import { initAudioPlayer } from './audioPlayer.js';
 import { initClipboard } from './clipboard.js';
+import { initThemeSwitcher } from './themeSwitcher.js';
+
+initThemeSwitcher();
 
 // Load default artists
 async function loadDefaultContent(countryCode) {
@@ -112,11 +115,3 @@ document.addEventListener('DOMContentLoaded', () => {
 	initSearchForms();
 	setupTabSwitching();
 });
-
-
-
-
-
-
-
-

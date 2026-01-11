@@ -1,0 +1,378 @@
+@charset 'UTF-8';
+
+*,
+::before,
+::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 10px;
+}
+
+/* UK Theme 🇬🇧 */
+body[data-theme='english'],
+body:not([data-theme]) {
+	/* Brand Colours */
+	--brand-colour-100: #e8ebf3;
+	--brand-colour-300: #7b8fc9;
+	--brand-colour-primary: #012169;
+	--brand-colour-700: #011852;
+	--brand-colour-900: #010f3b;
+
+	/* Accent Colours */
+	--brand-accent-light: #b8465a;
+	--brand-accent-primary: #9a3a4c;
+
+	/* Background Colours */
+	--bg-colour-100: #fafafa;
+	--bg-colour-200: #f5f5f5;
+	--bg-colour-300: #e0e0e0;
+	--bg-colour-400: #bdbdbd;
+	--bg-colour-500: #9e9e9e;
+
+	/* Border Colours */
+	--border-colour-light: #e5e5e5;
+	--border-colour-primary: #cccccc;
+	--border-colour-dark: #999999;
+
+	/* Text Colours */
+	--text-colour-100: #9e9e9e;
+	--text-colour-300: #757575;
+	--text-colour-primary: #616161;
+	--text-colour-700: #424242;
+	--text-colour-900: #212121;
+
+	/* Success State */
+	--success-colour: #5a9367;
+	--success-colour-text: #2d5f3a;
+
+	/* Error State */
+	--error-colour: #c1465a;
+
+	/* Neutral */
+	--colour-lightest: #ffffff;
+
+	/* Font size */
+	--font-size-primary: 1.6rem;
+
+	/* Font family */
+	--font-family: 'Inter', sans-serif;
+
+	/* Content width */
+	--content-width: 1000px;
+}
+
+/* Spain Theme 🇪🇸 */
+body[data-theme='spanish'] {
+	/* Brand Colours */
+	--brand-colour-100: #f0e3e5;
+	--brand-colour-300: #b86b75;
+	--brand-colour-primary: #8b2d35;
+	--brand-colour-700: #6b2329;
+	--brand-colour-900: #4a181d;
+
+	/* Accent Colours */
+	--brand-accent-light: #c9943a;
+	--brand-accent-primary: #a87a2f;
+
+	/* Background Colours */
+	--bg-colour-100: #faf9f7;
+	--bg-colour-200: #f5f3f0;
+	--bg-colour-300: #e8e3dd;
+	--bg-colour-400: #d1c9bf;
+	--bg-colour-500: #aea89e;
+
+	/* Border Colours */
+	--border-colour-light: #e8e3dd;
+	--border-colour-primary: #d1c9bf;
+	--border-colour-dark: #a89d8f;
+
+	/* Text Colours */
+	--text-colour-100: #a89d8f;
+	--text-colour-300: #7d7166;
+	--text-colour-primary: #5e5449;
+	--text-colour-700: #443d34;
+	--text-colour-900: #2a2520;
+
+	/* Success State */
+	--success-colour: #6b8c6e;
+	--success-colour-text: #3d5e3f;
+
+	/* Error State */
+	--error-colour: #b8453d;
+
+	/* Neutral */
+	--colour-lightest: #ffffff;
+
+	/* Font size */
+	--font-size-primary: 1.6rem;
+
+	/* Font family */
+	--font-family: 'Inter', sans-serif;
+
+	/* Content width */
+	--content-width: 1000px;
+}
+
+/* Germany Theme 🇩🇪 */
+body[data-theme='german'] {
+	/* Brand Colours */
+	--brand-colour-100: #f0f0f0;
+	--brand-colour-300: #d4a935;
+	--brand-colour-primary: #1a1a1a;
+	--brand-colour-700: #0d0d0d;
+	--brand-colour-900: #000000;
+
+	/* Accent Colours */
+	--brand-accent-light: #c1695a;
+	--brand-accent-primary: #a8443a;
+
+	/* Background Colours */
+	--bg-colour-100: #fafafa;
+	--bg-colour-200: #f5f5f5;
+	--bg-colour-300: #e0e0e0;
+	--bg-colour-400: #bdbdbd;
+	--bg-colour-500: #9e9e9e;
+
+	/* Border Colours */
+	--border-colour-light: #e5e5e5;
+	--border-colour-primary: #cccccc;
+	--border-colour-dark: #999999;
+
+	/* Text Colours */
+	--text-colour-100: #9e9e9e;
+	--text-colour-300: #757575;
+	--text-colour-primary: #616161;
+	--text-colour-700: #424242;
+	--text-colour-900: #212121;
+
+	/* Success State */
+	--success-colour: #5a9367;
+	--success-colour-text: #2d5f3a;
+
+	/* Error State */
+	--error-colour: #c1543d;
+
+	/* Neutral */
+	--colour-lightest: #ffffff;
+
+	/* Font size */
+	--font-size-primary: 1.6rem;
+
+	/* Font family */
+	--font-family: 'Inter', sans-serif;
+
+	/* Content width */
+	--content-width: 1000px;
+}
+
+/* France Theme 🇫🇷 */
+body[data-theme='french'] {
+	/* Brand Colours */
+	--brand-colour-100: #d4e6f1;
+	--brand-colour-300: #5291c9;
+	--brand-colour-primary: #004482;
+	--brand-colour-700: #003160;
+	--brand-colour-900: #002044;
+
+	/* Accent Colours */
+	--brand-accent-light: #c14440;
+	--brand-accent-primary: #c1283a;
+
+	/* Background Colours */
+	--bg-colour-100: #fafafa;
+	--bg-colour-200: #f5f5f5;
+	--bg-colour-300: #e0e0e0;
+	--bg-colour-400: #bdbdbd;
+	--bg-colour-500: #9e9e9e;
+
+	/* Border Colours */
+	--border-colour-light: #e5e5e5;
+	--border-colour-primary: #cccccc;
+	--border-colour-dark: #999999;
+
+	/* Text Colours */
+	--text-colour-100: #9e9e9e;
+	--text-colour-300: #757575;
+	--text-colour-primary: #616161;
+	--text-colour-700: #424242;
+	--text-colour-900: #212121;
+
+	/* Success State */
+	--success-colour: #5a9367;
+	--success-colour-text: #2d5f3a;
+
+	/* Error State */
+	--error-colour: #c1465a;
+
+	/* Neutral */
+	--colour-lightest: #ffffff;
+
+	/* Font size */
+	--font-size-primary: 1.6rem;
+
+	/* Font family */
+	--font-family: 'Inter', sans-serif;
+
+	/* Content width */
+	--content-width: 1000px;
+}
+
+/* Japan Theme 🇯🇵 */
+body[data-theme='japanese'] {
+	/* Brand Colours */
+	--brand-colour-100: #e5ede8;
+	--brand-colour-300: #6b9a7b;
+	--brand-colour-primary: #2d5f3a;
+	--brand-colour-700: #20472b;
+	--brand-colour-900: #15301d;
+
+	/* Accent Colours */
+	--brand-accent-light: #e68fa8;
+	--brand-accent-primary: #d9758f;
+
+	/* Background Colours */
+	--bg-colour-100: #fafafa;
+	--bg-colour-200: #f5f5f5;
+	--bg-colour-300: #e0e0e0;
+	--bg-colour-400: #bdbdbd;
+	--bg-colour-500: #9e9e9e;
+
+	/* Border Colours */
+	--border-colour-light: #e5e5e5;
+	--border-colour-primary: #cccccc;
+	--border-colour-dark: #999999;
+
+	/* Text Colours */
+	--text-colour-100: #9e9e9e;
+	--text-colour-300: #757575;
+	--text-colour-primary: #616161;
+	--text-colour-700: #424242;
+	--text-colour-900: #212121;
+
+	/* Success State */
+	--success-colour: #4a7a5a;
+	--success-colour-text: #2d5f3a;
+
+	/* Error State */
+	--error-colour: #c1543d;
+
+	/* Neutral */
+	--colour-lightest: #ffffff;
+
+	/* Font size */
+	--font-size-primary: 1.6rem;
+
+	/* Font family */
+	--font-family: 'Inter', sans-serif;
+
+	/* Content width */
+	--content-width: 1000px;
+}
+
+/* Korea Theme 🇰🇷 */
+body[data-theme='korean'] {
+	/* Brand Colours */
+	--brand-colour-100: #e8edf5;
+	--brand-colour-300: #7b92c9;
+	--brand-colour-primary: #1a3a5f;
+	--brand-colour-700: #0f2744;
+	--brand-colour-900: #0a1a2f;
+
+	/* Accent Colours */
+	--brand-accent-light: #e67373;
+	--brand-accent-primary: #c83e3e;
+
+	/* Background Colours */
+	--bg-colour-100: #faf8f5;
+	--bg-colour-200: #f5f1eb;
+	--bg-colour-300: #e8dfd5;
+	--bg-colour-400: #d1c4b5;
+	--bg-colour-500: #b3a89a;
+
+	/* Border Colours */
+	--border-colour-light: #e8dfd5;
+	--border-colour-primary: #d1c4b5;
+	--border-colour-dark: #a8988a;
+
+	/* Text Colours */
+	--text-colour-100: #a89d8f;
+	--text-colour-300: #7d705e;
+	--text-colour-primary: #5e5244;
+	--text-colour-700: #433d32;
+	--text-colour-900: #2a2520;
+
+	/* Success State */
+	--success-colour: #5a8c67;
+	--success-colour-text: #2d5f3a;
+
+	/* Error State */
+	--error-colour: #a84a3d;
+
+	/* Neutral */
+	--colour-lightest: #ffffff;
+
+	/* Font size */
+	--font-size-primary: 1.6rem;
+
+	/* Font family */
+	--font-family: 'Inter', sans-serif;
+
+	/* Content width */
+	--content-width: 1000px;
+}
+
+/* Taiwan Theme 🇹🇼 */
+body[data-theme='mandarin'] {
+	/* Brand Colours */
+	--brand-colour-100: #e3e8f0;
+	--brand-colour-300: #6b7fa8;
+	--brand-colour-primary: #1f3550;
+	--brand-colour-700: #14233a;
+	--brand-colour-900: #0d1626;
+
+	/* Accent Colours */
+	--brand-accent-light: #e6945f;
+	--brand-accent-primary: #c8693a;
+
+	/* Background Colours */
+	--bg-colour-100: #faf9f7;
+	--bg-colour-200: #f5f3f0;
+	--bg-colour-300: #ebe8e3;
+	--bg-colour-400: #d9d4cd;
+	--bg-colour-500: #c0bbb3;
+
+	/* Border Colours */
+	--border-colour-light: #ebe8e3;
+	--border-colour-primary: #d9d4cd;
+	--border-colour-dark: #bfbab3;
+
+	/* Text Colours */
+	--text-colour-100: #afa89e;
+	--text-colour-300: #847d73;
+	--text-colour-primary: #635e54;
+	--text-colour-700: #494640;
+	--text-colour-900: #2f2d29;
+
+	/* Success State */
+	--success-colour: #5a8c6b;
+	--success-colour-text: #2d5f3a;
+
+	/* Error State */
+	--error-colour: #c1543d;
+
+	/* Neutral */
+	--colour-lightest: #ffffff;
+
+	/* Font size */
+	--font-size-primary: 1.6rem;
+
+	/* Font family */
+	--font-family: 'Inter', sans-serif;
+
+	/* Content width */
+	--content-width: 1000px;
+}
