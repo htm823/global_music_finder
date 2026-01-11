@@ -26,6 +26,19 @@ async function searchMusicByCountry(artist, countryCode) {
 	return { results: filteredResults };
 }
 
+// Searches iTunes API for songs by a search term
+export async function searchByUserQuery(searchTerm, countryCode) {
+	const requestUrl = `${API_BASE_URL}?term=${encodeURIComponent(searchTerm)}&country=${countryCode}&media=music&entity=song&limit=50`;
+	const response = await fetch(requestUrl);
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+
+	const musicData = await response.json();
+	return musicData.results;
+}
+
 // Shuffles an array of tracks
 function displayShuffledOrder(tracks) {
 	const shuffled = [...tracks];

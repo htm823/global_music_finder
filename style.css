@@ -172,7 +172,7 @@ body {
 }
 
 .search-form {
-  margin: 7rem 0;
+  margin: 7rem 0 0 0;
   position: relative;
 }
 .search-form::before {
@@ -183,7 +183,7 @@ body {
   font-size: 2rem;
   font-family: "Font Awesome 7 Free";
   font-weight: 900;
-  color: var(--border-colour-primary);
+  color: var(--border-colour-dark);
   position: absolute;
   top: 1.2rem;
   left: 1.1rem;
@@ -192,10 +192,11 @@ body {
   display: block;
   width: 100%;
   padding: 1.2rem 1.5rem 1rem 4rem;
-  border: 0.2rem solid var(--border-colour-primary);
+  border: 0.2rem solid var(--border-colour-dark);
   border-radius: 0.4rem;
   font-size: 1.6rem;
   margin: 0 0 2rem;
+  color: var(--text-colour-primary);
 }
 .search-form__input::-moz-placeholder {
   font-size: 1.6rem;
@@ -204,6 +205,11 @@ body {
 .search-form__input::placeholder {
   font-size: 1.6rem;
   color: var(--text-colour-100);
+}
+.search-form__input:focus {
+  outline: none;
+  border: 0.2rem solid var(--brand-colour-300);
+  caret-color: var(--brand-colour-300);
 }
 .search-form__label {
   position: absolute;
