@@ -130,11 +130,11 @@ body {
 .language #korean:checked ~ .language__contents .language__content[data-tab=korean] {
   display: block;
 }
-.language #chinese:checked ~ .language__tabs .language__tab[for=chinese] {
+.language #mandarin:checked ~ .language__tabs .language__tab[for=mandarin] {
   background-color: var(--brand-colour-primary);
   color: var(--colour-lightest);
 }
-.language #chinese:checked ~ .language__contents .language__content[data-tab=chinese] {
+.language #mandarin:checked ~ .language__contents .language__content[data-tab=mandarin] {
   display: block;
 }
 .language__tabs {
