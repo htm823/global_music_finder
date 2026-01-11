@@ -77,5 +77,5 @@ jobs:
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: context.issue.number,
-                        body: `🌱 Branch created automatically\n\n\`${{ steps.branch.outputs.name }}\`\n\n\`\`\`bash\ngit fetch origin\ngit checkout ${{ steps.branch.outputs.name }}\n\`\`\``
+                        body: `🚀 Branch created automatically\n\n\`${{ steps.branch.outputs.name }}\`\n\n\`\`\`bash\ngit fetch origin\ngit checkout ${{ steps.branch.outputs.name }}\n\`\`\``
                       })
