@@ -7,11 +7,17 @@ function createTrackRows(track) {
 			</td>
 			<td class="search-results__track-title">
 				<span class="search-results__track-title-text">${track.trackName}</span>
-				<button class="search-results__track-title-copy-btn" data-copy-text="${track.trackName}"><i class="fa-regular fa-clone"></i></button>
+				<button class="search-results__track-title-copy-btn" data-copy-text="${track.trackName}">
+					<i class="fa-regular fa-clone"></i>
+					<i class="fa-solid fa-check"></i>
+				</button>
 			</td>
 			<td class="search-results__artist">
 				<span class="search-results__artist-text">${track.artistName}</span>
-				<button class="search-results__artist-copy-btn" data-copy-text="${track.artistName}"><i class="fa-regular fa-clone"></i></button>
+				<button class="search-results__artist-copy-btn" data-copy-text="${track.artistName}">
+					<i class="fa-regular fa-clone"></i>
+					<i class="fa-solid fa-check"></i>
+				</button>
 			</td>
 			<td class="search-results__preview">
 				<div class="search-results__preview-inner">

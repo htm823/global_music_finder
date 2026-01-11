@@ -43,14 +43,11 @@ html {
 	--text-colour-900: #212121;
 
 	/* Success State */
-	--success-colour-border: #4caf50;
-	--success-colour-bg: #e8f5e9;
-	--success-colour-text: #2e7d32;
+	--success-colour: #5a9367;
+	--success-colour-text: #2d5f3a;
 
 	/* Error State */
-	--error-colour-border: #d32f2f;
-	--error-colour-bg: #ffebee;
-	--error-colour-text: #c62828;
+	--error-colour: #c1465a;
 
 	/* Neutral */
 	--colour-lightest: #ffffff;
@@ -381,8 +378,40 @@ body {
 			font-size: 1.6rem;
 			cursor: pointer;
 
+			.fa {
+				&-check {
+					display: none;
+				}
+
+				&-clone {
+					display: inline-block;
+				}
+			}
+
 			&:hover {
-				color: var(--brand-colour-primary);
+				.fa {
+					&-check {
+						display: none;
+					}
+
+					&-clone {
+						color: var(--brand-colour-primary);
+						display: inline-block;
+					}
+				}
+			}
+
+			&.is-copied {
+				.fa {
+					&-check {
+						display: inline-block;
+						color: var(--success-colour-text);
+					}
+
+					&-clone {
+						display: none;
+					}
+				}
 			}
 		}
 	}
@@ -398,8 +427,40 @@ body {
 			font-size: 1.6rem;
 			cursor: pointer;
 
+			.fa {
+				&-check {
+					display: none;
+				}
+
+				&-clone {
+					display: inline-block;
+				}
+			}
+
 			&:hover {
-				color: var(--brand-colour-primary);
+				.fa {
+					&-check {
+						display: none;
+					}
+
+					&-clone {
+						color: var(--brand-colour-primary);
+						display: inline-block;
+					}
+				}
+			}
+
+			&.is-copied {
+				.fa {
+					&-check {
+						display: inline-block;
+						color: var(--success-colour-text);
+					}
+
+					&-clone {
+						display: none;
+					}
+				}
 			}
 		}
 	}
@@ -488,6 +549,38 @@ body {
 	}
 	50% {
 		transform: scaleY(0.5);
+	}
+}
+
+.copy-toast {
+	position: fixed;
+	width: 18rem;
+	top: 3rem;
+	left: 0;
+	padding: 2rem;
+	opacity: 0;
+	transform: translateX(-18rem);
+	pointer-events: none;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	z-index: 1000;
+	font-size: 1.8rem;
+	text-align: right;
+	border-top-right-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
+	color: var(--colour-lightest);
+	transition: all 0.3s ease-in-out;
+
+	&.is-visible {
+		opacity: 1;
+		transform: translateX(0);
+
+		&.is-success {
+			background-color: var(--success-colour);
+		}
+
+		&.is-error {
+			background-color: var(--error-colour);
+		}
 	}
 }
 
