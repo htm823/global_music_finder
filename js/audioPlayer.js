@@ -52,8 +52,8 @@ export function initAudioPlayer() {
 	);
 
 	// Syncs UI state with audio events
-	const previewStates = ['play', 'pause', 'ended'];
-	previewStates.forEach((state) => {
-		document.addEventListener(state, handleAudioStateChange, true);
-	});
+const previewStates = ['play', 'pause', 'ended'];
+previewStates.forEach((state) => {
+	document.addEventListener(state, handleAudioStateChange, true);
+});
 }

@@ -70,3 +70,16 @@ export function displayResults(tracks, countryCode) {
 
 	resultsContainer.insertAdjacentHTML('beforeend', createTrackTable(tracks));
 }
+
+// Displays a loading text
+export function showLoading(countryCode) {
+	const resultsContainer = document.querySelector(`.search-results[data-country="${countryCode}"]`);
+	resultsContainer.innerHTML = '<p class="loading">Searching...</p>';
+}
+
+// Displays an error text
+export function showError(countryCode, message = 'Failed to load music. Please try again.') {
+	const resultsContainer = document.querySelector(`.search-results[data-country="${countryCode}"]`);
+	resultsContainer.innerHTML = `<p class="error">${message}</p>`;
+}
+
