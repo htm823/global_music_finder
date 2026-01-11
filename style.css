@@ -36,13 +36,10 @@ html {
   --text-colour-700: #424242;
   --text-colour-900: #212121;
   /* Success State */
-  --success-colour-border: #4caf50;
-  --success-colour-bg: #e8f5e9;
-  --success-colour-text: #2e7d32;
+  --success-colour: #5a9367;
+  --success-colour-text: #2d5f3a;
   /* Error State */
-  --error-colour-border: #d32f2f;
-  --error-colour-bg: #ffebee;
-  --error-colour-text: #c62828;
+  --error-colour: #c1465a;
   /* Neutral */
   --colour-lightest: #ffffff;
   /* Font size */
@@ -308,8 +305,25 @@ body {
   font-size: 1.6rem;
   cursor: pointer;
 }
-.search-results__track-title-copy-btn:hover {
+.search-results__track-title-copy-btn .fa-check {
+  display: none;
+}
+.search-results__track-title-copy-btn .fa-clone {
+  display: inline-block;
+}
+.search-results__track-title-copy-btn:hover .fa-check {
+  display: none;
+}
+.search-results__track-title-copy-btn:hover .fa-clone {
   color: var(--brand-colour-primary);
+  display: inline-block;
+}
+.search-results__track-title-copy-btn.is-copied .fa-check {
+  display: inline-block;
+  color: var(--success-colour-text);
+}
+.search-results__track-title-copy-btn.is-copied .fa-clone {
+  display: none;
 }
 .search-results__artist {
   padding: 0 0 0 2rem;
@@ -322,8 +336,25 @@ body {
   font-size: 1.6rem;
   cursor: pointer;
 }
-.search-results__artist-copy-btn:hover {
+.search-results__artist-copy-btn .fa-check {
+  display: none;
+}
+.search-results__artist-copy-btn .fa-clone {
+  display: inline-block;
+}
+.search-results__artist-copy-btn:hover .fa-check {
+  display: none;
+}
+.search-results__artist-copy-btn:hover .fa-clone {
   color: var(--brand-colour-primary);
+  display: inline-block;
+}
+.search-results__artist-copy-btn.is-copied .fa-check {
+  display: inline-block;
+  color: var(--success-colour-text);
+}
+.search-results__artist-copy-btn.is-copied .fa-clone {
+  display: none;
 }
 .search-results__preview {
   width: 7rem;
@@ -395,6 +426,35 @@ body {
     transform: scaleY(0.5);
   }
 }
+.copy-toast {
+  position: fixed;
+  width: 18rem;
+  top: 3rem;
+  left: 0;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateX(-18rem);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1000;
+  font-size: 1.8rem;
+  text-align: right;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  color: var(--colour-lightest);
+  transition: all 0.3s ease-in-out;
+}
+.copy-toast.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.copy-toast.is-visible.is-success {
+  background-color: var(--success-colour);
+}
+.copy-toast.is-visible.is-error {
+  background-color: var(--error-colour);
+}
+
 .footer {
   padding: 7rem 0 4rem 0;
 }
