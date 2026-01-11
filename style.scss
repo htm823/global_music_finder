@@ -174,13 +174,13 @@ body {
 		}
 	}
 
-	#chinese:checked {
-		& ~ .language__tabs .language__tab[for='chinese'] {
+	#mandarin:checked {
+		& ~ .language__tabs .language__tab[for='mandarin'] {
 			background-color: var(--brand-colour-primary);
 			color: var(--colour-lightest);
 		}
 
-		& ~ .language__contents .language__content[data-tab='chinese'] {
+		& ~ .language__contents .language__content[data-tab='mandarin'] {
 			display: block;
 		}
 	}
