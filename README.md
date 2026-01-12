@@ -1,20 +1,19 @@
-# Global Music Finder
+# 🌍 Global Music Finder
 
 A music search app to find and copy song titles and artist names from around the world.
 
 
-## Live Demo
+## 🚀 Live Demo
 
 👉 **Live URL:** https://global-music-finder.vercel.app/  
 
 
-## Overview
+## 📘 Overview
 
 This project is a personal portfolio piece created to demonstrate my approach to UI design, problem-solving, adn clean implementation. 
 It focuses on clarity, maintainability, and real-world usability rather than excessive complexity.
 
-
-## Motivation – Why I Built This
+## 💡 Motivation – Why I Built This
 
 I started this project because:
 
@@ -25,7 +24,7 @@ I started this project because:
 This project reflects how I think as a developer and the kind of products I aim to build in a professional environment.
 
 
-## Design & Thought Process – How I Approached It
+## 🎨🧠 Design & Thought Process – How I Approached It
 
 When designing this project, I focused on the following principles:
 
@@ -37,7 +36,7 @@ When designing this project, I focused on the following principles:
 - **Accessibility and readability:** Font sizes and colour contrasts were selected with readability as the top priority.
 
 
-### Key Decisions
+### 🧩 Key Decisions
 
 - I chose this architecture to make each feature’s JavaScript easier to understand, maintain, and extend over time.
 - I selected SCSS because it works well with the BEM methodology, allowing styles to remain structured and predictable as the project grows.
@@ -45,26 +44,26 @@ When designing this project, I focused on the following principles:
 - I used the iTunes API because it does not require user registration and provides access to a wide variety of tracks and artists, making it suitable for quick exploration and prototyping.
 
 
-## Features
+## ✨ Features
 
 - **Country-based music search:** Search for songs and artists by country to explore regional music scenes.
 - **Copy track and artist names:** Easily copy track titles and artist names for reuse across platforms and languages.
 - **Track preview:** Listen to short previews to quickly discover new music.
 
 
-## Planned Features (Future Improvements)
+## 🔮 Planned Features (Future Improvements)
 
 - [ ] **Responsive design:** Improve usability across mobile, tablet, and desktop devices.
 - [ ] **Visual refinement:** Further enhance the design by refining colour choices and spacing for a more polished experience.
 
 This list reflects how I think about **iteration and long-term improvement**.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Languages:** HTML, SCSS (CSS), JavaScript  
 - **Tooling & Infrastructure:** Google Analytics (usage insights), Vercel (simple and fast deployment)
 
-## Setup & Installation
+## ⚙️ Setup & Installation
 
 ```bash
 git clone https://github.com/htm823/global_music_finder.git
