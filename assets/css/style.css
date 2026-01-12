@@ -723,4 +723,11 @@ body {
   color: var(--text-colour-300);
   display: block;
   text-align: center;
+}
+.footer__copyright-developer {
+  color: var(--brand-colour-primary);
+  text-decoration: none;
+}
+.footer__copyright-developer:hover {
+  color: var(--brand-colour-300);
 }/*# sourceMappingURL=style.css.map */

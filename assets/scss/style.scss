@@ -535,5 +535,14 @@ body {
 		color: var(--text-colour-300);
 		display: block;
 		text-align: center;
+
+		&-developer {
+			color: var(--brand-colour-primary);
+			text-decoration: none;
+
+			&:hover {
+				color: var(--brand-colour-300);
+			}
+		}
 	}
 }
