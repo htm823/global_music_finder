@@ -537,6 +537,24 @@ body {
 	}
 }
 
+.terms-of-use {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 0 0 4rem;
+
+	dt {
+		font-size: 1.8rem;
+		color: var(--brand-colour-primary);
+		font-weight: 700;
+		margin: 1rem 0 0 0;
+	}
+
+	ul {
+		padding: 0 0 0 4rem;
+	}
+}
+
 .footer {
 	padding: 6rem 0 5rem;
 
@@ -572,6 +590,8 @@ body {
 		display: flex;
 		justify-content: center;
 		font-size: 1.4rem;
+		gap: 1rem;
+		padding: 0 1rem 0 0;
 
 		> a {
 			text-decoration: none;
@@ -590,6 +610,7 @@ body {
 		display: block;
 		text-align: center;
 		padding: 1rem 0 0 0;
+		line-height: 1.6;
 
 		&-developer {
 			color: var(--brand-colour-primary);
