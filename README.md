@@ -2,6 +2,14 @@
 
 A music search app to find and copy song titles and artist names from around the world.
 
+## 📄 Usage & License
+
+This repository is public for portfolio and evaluation purposes only.
+
+- This project is not open source
+- Commercial use is not permitted
+
+All rights reserved.
 
 ## 🚀 Live Demo
 
@@ -64,9 +72,3 @@ This list reflects how I think about **iteration and long-term improvement**.
 
 - **Languages:** HTML, SCSS (CSS), JavaScript  
 - **Tooling & Infrastructure:** Google Analytics (usage insights), Vercel (simple and fast deployment)
-
-## ⚙️ Setup & Installation
-
-```bash
-git clone https://github.com/htm823/global_music_finder.git
-```
