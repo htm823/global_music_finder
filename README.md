@@ -5,7 +5,7 @@ A music search app to find and copy song titles and artist names from around the
 
 ## 🚀 Live Demo
 
-👉 **Live URL:** https://global-music-finder.vercel.app/  
+https://global-music-finder.vercel.app/  
 
 ### 🎬 Demo Preview
 
