@@ -8,7 +8,8 @@ A music search app to find and copy song titles and artist names from around the
 👉 **Live URL:** https://global-music-finder.vercel.app/  
 
 ### 🎬 Demo Preview
-![Global Music Finder Demo](gmf.mp4)
+
+https://github.com/user-attachments/assets/17c0bc08-8366-405c-ab6c-c704640160a4
 
 ## 📘 Overview
 
