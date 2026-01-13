@@ -7,6 +7,8 @@ A music search app to find and copy song titles and artist names from around the
 
 👉 **Live URL:** https://global-music-finder.vercel.app/  
 
+### 🎬 Demo Preview
+![Global Music Finder Demo](gmf.mp4)
 
 ## 📘 Overview
 
@@ -24,7 +26,7 @@ I started this project because:
 This project reflects how I think as a developer and the kind of products I aim to build in a professional environment.
 
 
-## 🎨🧠 Design & Thought Process – How I Approached It
+## 🎨 Design & Thought Process – How I Approached It
 
 When designing this project, I focused on the following principles:
 
@@ -43,13 +45,12 @@ When designing this project, I focused on the following principles:
 - I built the project from scratch without using frameworks in order to deepen my understanding of core web technologies and have full control over the implementation.
 - I used the iTunes API because it does not require user registration and provides access to a wide variety of tracks and artists, making it suitable for quick exploration and prototyping.
 
-
 ## ✨ Features
 
 - **Country-based music search:** Search for songs and artists by country to explore regional music scenes.
+- **Curated default tracks:** By default, the app displays songs by well-known and representative artists from each country, helping users immediately understand the local music context.
 - **Copy track and artist names:** Easily copy track titles and artist names for reuse across platforms and languages.
 - **Track preview:** Listen to short previews to quickly discover new music.
-
 
 ## 🔮 Planned Features (Future Improvements)
 
