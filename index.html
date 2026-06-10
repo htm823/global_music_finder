@@ -20,14 +20,12 @@
 	<meta name="title" content="Global Music Finder - Search Music Worldwide">
 	<meta name="description" content="A music search app to find and copy song titles and artist names from around the world.">
 	<meta name="keywords" content="music search, international music, song finder, artist search, K-pop, J-pop, global music">
-	<meta name="author" content="Hatsumi Shimizu">
+	<meta name="author" content="Hatsumi">
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="Global Music Finder">
 	<meta property="og:description" content="A music search app to find and copy song titles and artist names from around the world.">
-
-	<!-- Add image & url later -->
 	<meta property="og:image" content="https://global-music-finder.vercel.app/assets/img/thumbnail.png">
 	<meta property="og:url" content="https://global-music-finder.vercel.app/">
 
@@ -37,18 +35,11 @@
 	<meta name="twitter:description" content="A music search app to find and copy song titles and artist names from around the world.">
 	<meta name="twitter:image" content="https://global-music-finder.vercel.app/assets/img/thumbnail.png">
 
-	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-	<!-- Favicon -->
 	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-
-	<!-- CSS -->
 	<link rel="stylesheet" href="assets/css/style.css">
-
-	<!-- FontAwesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Bootstrap -->
@@ -56,143 +47,199 @@
 </head>
 
 <body>
-	<header class="header">
-		<div class="header__container">
-			<h1 class="header__title">Global Music Finder</h1>
-		</div>
-	</header>
-	<main class="main">
-		<div class="main__container">
-			<div id="toast" class="copy-toast" aria-live="polite"></div>
-			<div class="language">
-				<!-- Input radios for tabs -->
-				<input id="english" class="language__radio" type="radio" name="language" checked>
-				<input id="spanish" class="language__radio" type="radio" name="language">
-				<input id="german" class="language__radio" type="radio" name="language">
-				<input id="french" class="language__radio" type="radio" name="language">
-				<input id="japanese" class="language__radio" type="radio" name="language">
-				<input id="korean" class="language__radio" type="radio" name="language">
-				<input id="mandarin" class="language__radio" type="radio" name="language">
-				<!-- Tabs -->
-				<div class="language__tabs">
-					<div class="language__europe">
-						<label for="english" class="language__tab">English</label>
-						<label for="spanish" class="language__tab">Spanish</label>
-						<label for="german" class="language__tab">German</label>
-						<label for="french" class="language__tab">French</label>
+	<div class="dashboard">
+		<aside class="sidebar">
+			<div class="sidebar__inner">
+				<h1 class="sidebar__title">
+					<img src="assets/img/logo.png" class="sidebar__logo" alt="Global Music Finder Logo">
+				</h1>
+				<nav class="sidebar__menu">
+					<ul class="sidebar__languages">
+						<li class="sidebar__language">
+							<input id="english" class="sidebar__radio" type="radio" name="language" checked>
+							<label for="english" class="sidebar__tab">English</label>
+						</li>
+						<li class="sidebar__language">
+							<input id="spanish" class="sidebar__radio" type="radio" name="language">
+							<label for="spanish" class="sidebar__tab">Spanish</label>
+						</li>
+						<li class="sidebar__language">
+							<input id="german" class="sidebar__radio" type="radio" name="language">
+							<label for="german" class="sidebar__tab">German</label>
+						</li>
+						<li class="sidebar__language">
+							<input id="french" class="sidebar__radio" type="radio" name="language">
+							<label for="french" class="sidebar__tab">French</label>
+						</li>
+						<li class="sidebar__language">
+							<input id="korean" class="sidebar__radio" type="radio" name="language">
+							<label for="korean" class="sidebar__tab">Korean</label>
+						</li>
+						<li class="sidebar__language">
+							<input id="japanese" class="sidebar__radio" type="radio" name="language">
+							<label for="japanese" class="sidebar__tab">Japanese</label>
+						</li>
+						<li class="sidebar__language">
+							<input id="mandarin" class="sidebar__radio" type="radio" name="language">
+							<label for="mandarin" class="sidebar__tab">Mandarin</label>
+						</li>
+						<li class="sidebar__language">
+							<input id="hindi" class="sidebar__radio" type="radio" name="language">
+							<label for="hindi" class="sidebar__tab">Hindi</label>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
+		<main class="search">
+			<div class="search__inner">
+				<div class="search__languages">
+
+					<!-- English -->
+					<div class="search__content is-active" data-tab="english">
+						<form class="search__form">
+							<div class="search__box">
+								<input id="search-en" class="search__input" type="text" placeholder="Artist or track title">
+								<label for="search-en" class="search__label">Search for an artist or a track</label>
+							</div>
+							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+						<div class="search__results" data-country="gb">
+							<!-- Results -->
+						</div>
 					</div>
-					<div class="language__asia">
-						<label for="japanese" class="language__tab">Japanese</label>
-						<label for="korean" class="language__tab">Korean</label>
-						<label for="mandarin" class="language__tab">Mandarin</label>
+
+					<!-- Spanish -->
+					<div class="search__content" data-tab="spanish">
+						<form class="search__form">
+							<div class="search__box">
+								<input id="search-es" class="search__input" type="text" placeholder="Artist or track title">
+								<label for="search-es" class="search__label">Search for an artist or a track</label>
+							</div>
+							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+						<div class="search__results" data-country="es">
+							<!-- Results -->
+						</div>
+					</div>
+
+					<!-- German -->
+					<div class="search__content" data-tab="german">
+						<form class="search__form">
+							<div class="search__box">
+								<input id="search-de" class="search__input" type="text" placeholder="Artist or track title">
+								<label for="search-de" class="search__label">Search for an artist or a track</label>
+							</div>
+							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+						<div class="search__results" data-country="de">
+							<!-- Results -->
+						</div>
+					</div>
+
+					<!-- French -->
+					<div class="search__content" data-tab="french">
+						<form class="search__form">
+							<div class="search__box">
+								<input id="search-fr" class="search__input" type="text" placeholder="Artist or track title">
+								<label for="search-fr" class="search__label">Search for an artist or a track</label>
+							</div>
+							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+						<div class="search__results" data-country="fr">
+							<!-- Results -->
+						</div>
+					</div>
+
+					<!-- Korean -->
+					<div class="search__content" data-tab="korean">
+						<form class="search__form">
+							<div class="search__box">
+								<input id="search-kr" class="search__input" type="text" placeholder="Artist or track title">
+								<label for="search-kr" class="search__label">Search for an artist or a track</label>
+							</div>
+							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+						<div class="search__results" data-country="kr">
+							<!-- Results -->
+						</div>
+					</div>
+
+					<!-- Japanese -->
+					<div class="search__content" data-tab="japanese">
+						<form class="search__form">
+							<div class="search__box">
+								<input id="search-jp" class="search__input" type="text" placeholder="Artist or track title">
+								<label for="search-jp" class="search__label">Search for an artist or a track</label>
+							</div>
+							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+						<div class="search__results" data-country="jp">
+							<!-- Results -->
+						</div>
+					</div>
+
+					<!-- Mandarin -->
+					<div class="search__content" data-tab="mandarin">
+						<form class="search__form">
+							<div class="search__box">
+								<input id="search-tw" class="search__input" type="text" placeholder="Artist or track title">
+								<label for="search-tw" class="search__label">Search for an artist or a track</label>
+							</div>
+							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+						<div class="search__results" data-country="tw">
+							<!-- Results -->
+						</div>
+					</div>
+
+					<!-- Hindi -->
+					<div class="search__content" data-tab="hindi">
+						<form class="search__form">
+							<div class="search__box">
+								<input id="search-in" class="search__input" type="text" placeholder="Artist or track title">
+								<label for="search-in" class="search__label">Search for an artist or a track</label>
+							</div>
+							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+						<div class="search__results" data-country="in">
+							<!-- Results -->
+						</div>
 					</div>
 				</div>
-
-				<!-- English Content -->
-				<div class="language__contents">
-					<div class="language__content" data-tab="english">
-						<form class="search-form">
-							<input id="english-search" class="search-form__input" type="text" placeholder="Artist or songs">
-							<label for="english-search" class="search-form__label">Search for artists or songs</label>
-							<button type="submit" class="search-form__btn">Search</button>
-						</form>
-						<div class="search-results" data-country="gb">
-							<!-- English search results -->
-						</div>
-					</div>
-
-					<!-- Spanish Content -->
-					<div class="language__content" data-tab="spanish">
-						<form class="search-form">
-							<input id="spanish-search" class="search-form__input" type="text" placeholder="Artist or songs">
-							<label for="spanish-search" class="search-form__label">Search for artists or songs</label>
-							<button type="submit" class="search-form__btn">Search</button>
-						</form>
-						<div class="search-results" data-country="es">
-							<!-- Spanish search results -->
-						</div>
-					</div>
-
-					<!-- German Content -->
-					<div class="language__content" data-tab="german">
-						<form class="search-form">
-							<input id="german-search" class="search-form__input" type="text" placeholder="Artist or songs">
-							<label for="german-search" class="search-form__label">Search for artists or songs</label>
-							<button type="submit" class="search-form__btn">Search</button>
-						</form>
-						<div class="search-results" data-country="de">
-							<!-- German search results -->
-						</div>
-					</div>
-
-					<!-- French Content -->
-					<div class="language__content" data-tab="french">
-						<form class="search-form">
-							<input id="french-search" class="search-form__input" type="text" placeholder="Artist or songs">
-							<label for="french-search" class="search-form__label">Search for artists or songs</label>
-							<button type="submit" class="search-form__btn">Search</button>
-						</form>
-						<div class="search-results" data-country="fr">
-							<!-- French search results -->
-						</div>
-					</div>
-
-					<!-- Japanese Content -->
-					<div class="language__content" data-tab="japanese">
-						<form class="search-form">
-							<input id="japanese-search" class="search-form__input" type="text" placeholder="Artist or songs">
-							<label for="japanese-search" class="search-form__label">Search for artists or songs</label>
-							<button type="submit" class="search-form__btn">Search</button>
-						</form>
-						<div class="search-results" data-country="jp">
-							<!-- Japanese search results -->
-						</div>
-					</div>
-
-					<!-- Korean Content -->
-					<div class="language__content" data-tab="korean">
-						<form class="search-form">
-							<input id="korean-search" class="search-form__input" type="text" placeholder="Artist or songs">
-							<label for="korean-search" class="search-form__label">Search for artists or songs</label>
-							<button type="submit" class="search-form__btn">Search</button>
-						</form>
-						<div class="search-results" data-country="kr">
-							<!-- Korean search results -->
-						</div>
-					</div>
-
-					<!-- Mandarin Content -->
-					<div class="language__content" data-tab="mandarin">
-						<form class="search-form">
-							<input id="mandarin-search" class="search-form__input" type="text" placeholder="Artist or songs">
-							<label for="mandarin-search" class="search-form__label">Search for artists or songs</label>
-							<button type="submit" class="search-form__btn">Search</button>
-						</form>
-						<div class="search-results" data-country="tw">
-							<!-- Mandarin search results -->
-						</div>
-					</div>
+			</div>
+			<footer class="footer">
+				<div class="footer__inner">
+					<nav class="footer__menu">
+						<ul class="footer__policies">
+							<li class="footer__policy"><a href="privacy_policy.html" class="footer__link" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+							<li class="footer__policy"><a href="terms_of_use.html" class="footer__link" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
+						</ul>
+					</nav>
+					<small class="footer__copyright">&copy; 2026 Global Music Finder</small>
 				</div>
-			</div>
-		</div>
-	</main>
-	<footer class="footer">
-		<div class="footer__container">
-			<div class="footer__sns">
-				<a href="https://github.com/htm823" class="footer__sns-github"><i class="bi bi-github"></i></a>
-				<a href="https://x.com/lilymauve88" class="footer__sns-x"><i class="bi bi-twitter-x"></i></a>
-				<a href="https://bsky.app/profile/lilymauve88.bsky.social" class="footer__sns-bluesky"><i class="fa-brands fa-bluesky"></i></a>
-			</div>
-			<div class="footer__privacy-policy">
-				<a href="privacy_policy.html">Privacy Policy</a>
-				<a href="terms_of_use.html">Terms of Use</a>
-			</div>
-			<small class="footer__copyright">
-				&copy; 2026 Global Music Finder. All rights reserved.<br>Created by <a href="https://buymeacoffee.com/hatsumi" class="footer__copyright-developer">Hatsumi</a>
-			</small>
-		</div>
-	</footer>
+			</footer>
+		</main>
+	</div>
 	<script src="assets/js/main.js" type="module"></script>
+	<script>
+		// Move code to a separate file later
+		const radios = document.querySelectorAll('.sidebar__radio');
+		const contents = document.querySelectorAll('.search__content');
+
+		radios.forEach(radio => {
+			radio.addEventListener('change', (e) => {
+				contents.forEach(content => content.classList.remove('is-active'));
+
+				const selectedId = e.target.id;
+
+				const activeContent = document.querySelector(`.search__content[data-tab="${selectedId}"]`);
+				if (activeContent) {
+					activeContent.classList.add('is-active');
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>
