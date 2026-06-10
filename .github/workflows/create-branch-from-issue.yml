@@ -23,12 +23,13 @@ jobs:
           LABELS="${{ join(github.event.issue.labels.*.name, ',') }}"
 
           SELECTED_TYPE="feat"
-          for t in "${TYPES[@]}"; do
-            if [[ "$LABELS" == *"$t"* ]]; then
+          for t in feat fix docs refactor chore; do
+            if [[ " $LABELS " =~ " $t " ]]; then
               SELECTED_TYPE="$t"
               break
             fi
           done
+
           echo "value=$SELECTED_TYPE" >> $GITHUB_OUTPUT
 
       - name: Generate branch name
