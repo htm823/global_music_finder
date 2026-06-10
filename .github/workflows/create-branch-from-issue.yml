@@ -19,10 +19,8 @@ jobs:
       - name: Determine branch type
         id: type
         run: |
-          TYPES=("feat" "fix" "docs" "refactor" "chore")
-          LABELS="${{ join(github.event.issue.labels.*.name, ',') }}"
+          LABELS="${{ join(github.event.issue.labels.*.name, ' ') }}"
 
-          SELECTED_TYPE="feat"
           for t in feat fix docs refactor chore; do
             if [[ " $LABELS " =~ " $t " ]]; then
               SELECTED_TYPE="$t"
@@ -70,9 +68,9 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: `🚀 Branch created automatically\n\n\`${{ steps.branch.outputs.name }}\`\n\n\`\`\`bash\ngit fetch origin\ngit checkout ${{ steps.branch.outputs.name }}\n\`\`\``
-            })
+           await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body: `🚀 Branch created automatically\n\n\`${{ steps.branch.outputs.name }}\`\n\n\`\`\`bash\ngit fetch origin\ngit checkout ${{ steps.branch.outputs.name }}\n\`\`\``
+           });
