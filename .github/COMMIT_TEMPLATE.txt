@@ -2,9 +2,8 @@
 #
 # Types:
 # feat: New feature
-# fix: Bug fix (non-breaking)
+# fix: Bug fix
 # docs: Documentation changes
-# bugfix: Bug fix
 # refactor: Code refactoring
 #
 # Example: feat: add user authentication

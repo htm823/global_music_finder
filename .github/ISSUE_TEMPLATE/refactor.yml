@@ -1,6 +1,6 @@
 name: Refactoring
 description: Suggest code refactoring or improvements
-title: 'Refactor: '
+title: 'refactor: '
 labels: ['refactor']
 body:
     - type: textarea
@@ -18,7 +18,7 @@ body:
           label: Tasks
           description: What needs to be done?
           placeholder: |
-              -
-              -
+              - [ ]
+              - [ ]
       validations:
           required: true

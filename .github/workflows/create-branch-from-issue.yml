@@ -1,81 +1,77 @@
 name: Create Branch on Issue Opened
 
 on:
-    issues:
-        types: [opened]
+  issues:
+    types: [opened]
 
 jobs:
-    create-branch:
-        runs-on: ubuntu-latest
-        permissions:
-            contents: write
-            issues: write
+  create-branch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
 
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            - name: Determine branch type
-              id: type
-              run: |
-                  LABELS="${{ join(github.event.issue.labels.*.name, ',') }}"
+      - name: Determine branch type
+        id: type
+        run: |
+          TYPES=("feat" "fix" "docs" "refactor" "chore")
+          LABELS="${{ join(github.event.issue.labels.*.name, ',') }}"
 
-                  if echo "$LABELS" | grep -q "bugfix"; then
-                    TYPE="bugfix"
-                  elif echo "$LABELS" | grep -q "fix"; then
-                    TYPE="fix"
-                  elif echo "$LABELS" | grep -q "docs"; then
-                    TYPE="docs"
-                  elif echo "$LABELS" | grep -q "refactor"; then
-                    TYPE="refactor"
-                  else
-                    TYPE="feat"
-                  fi
+          SELECTED_TYPE="feat"
+          for t in "${TYPES[@]}"; do
+            if [[ "$LABELS" == *"$t"* ]]; then
+              SELECTED_TYPE="$t"
+              break
+            fi
+          done
+          echo "value=$SELECTED_TYPE" >> $GITHUB_OUTPUT
 
-                  echo "value=$TYPE" >> $GITHUB_OUTPUT
+      - name: Generate branch name
+        id: branch
+        run: |
+          ISSUE_NO=${{ github.event.issue.number }}
+          TITLE="${{ github.event.issue.title }}"
+          TYPE="${{ steps.type.outputs.value }}"
 
-            - name: Generate branch name
-              id: branch
-              run: |
-                  ISSUE_NO=${{ github.event.issue.number }}
-                  TITLE="${{ github.event.issue.title }}"
-                  TYPE="${{ steps.type.outputs.value }}"
+          TITLE=$(echo "$TITLE" | sed -E 's/^(feat|fix|docs|refactor|chore):\s*//i')
 
-                  TITLE=$(echo "$TITLE" | sed -E 's/^(feat|fix|docs|bugfix|refactor):\s*//i')
+          SLUG=$(echo "$TITLE" \
+            | tr '[:upper:]' '[:lower:]' \
+            | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//' \
+            | cut -c1-50)
 
-                  SLUG=$(echo "$TITLE" \
-                    | tr '[:upper:]' '[:lower:]' \
-                    | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//' \
-                    | cut -c1-50)
+          echo "name=${TYPE}/#${ISSUE_NO}_${SLUG}" >> $GITHUB_OUTPUT
 
-                  echo "name=${TYPE}/#${ISSUE_NO}_${SLUG}" >> $GITHUB_OUTPUT
+      - name: Check if branch exists
+        id: exists
+        run: |
+          if git ls-remote --heads origin "${{ steps.branch.outputs.name }}" | grep -q .; then
+            echo "value=true" >> $GITHUB_OUTPUT
+          else
+            echo "value=false" >> $GITHUB_OUTPUT
+          fi
 
-            - name: Check if branch exists
-              id: exists
-              run: |
-                  if git ls-remote --heads origin "${{ steps.branch.outputs.name }}" | grep -q .; then
-                    echo "value=true" >> $GITHUB_OUTPUT
-                  else
-                    echo "value=false" >> $GITHUB_OUTPUT
-                  fi
+      - name: Create branch
+        if: steps.exists.outputs.value == 'false'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git checkout -b "${{ steps.branch.outputs.name }}"
+          git push origin "${{ steps.branch.outputs.name }}"
 
-            - name: Create branch
-              if: steps.exists.outputs.value == 'false'
-              run: |
-                  git config user.name github-actions[bot]
-                  git config user.email github-actions[bot]@users.noreply.github.com
-                  git checkout -b "${{ steps.branch.outputs.name }}"
-                  git push origin "${{ steps.branch.outputs.name }}"
-
-            - name: Comment on issue
-              if: steps.exists.outputs.value == 'false'
-              uses: actions/github-script@v7
-              with:
-                  script: |
-                      await github.rest.issues.createComment({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        issue_number: context.issue.number,
-                        body: `🚀 Branch created automatically\n\n\`${{ steps.branch.outputs.name }}\`\n\n\`\`\`bash\ngit fetch origin\ngit checkout ${{ steps.branch.outputs.name }}\n\`\`\``
-                      })
+      - name: Comment on issue
+        if: steps.exists.outputs.value == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `🚀 Branch created automatically\n\n\`${{ steps.branch.outputs.name }}\`\n\n\`\`\`bash\ngit fetch origin\ngit checkout ${{ steps.branch.outputs.name }}\n\`\`\``
+            })

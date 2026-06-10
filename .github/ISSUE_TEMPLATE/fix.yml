@@ -1,6 +1,6 @@
 name: Fix
 description: Report a bug fix, feature update, or improvement
-title: 'Fix: '
+title: 'fix: '
 labels: ['fix']
 body:
     - type: textarea
@@ -18,7 +18,7 @@ body:
           label: Tasks
           description: What needs to be done?
           placeholder: |
-              -
-              -
+              - [ ]
+              - [ ]
       validations:
           required: true
