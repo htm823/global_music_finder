@@ -1,59 +1,78 @@
-// Toggles audio playback state
-function toggleAudio(audio) {
-	audio.paused ? audio.play() : audio.pause();
+'use strict';
+
+// HTML class names
+const SELECTORS = {
+	KIT: '.track__kit',
+	AUDIO: 'track__audio',
+	PLAY_BTN: 'track__play',
+	WAVES: 'track__waves',
+	IS_PLAYING: 'is-playing',
+};
+
+/**
+ * Stop all other audios
+ */
+function stopAllOtherAudios(currentAudio) {
+	const audios = document.querySelectorAll(SELECTORS.AUTIO);
+	audios.forEach((audio) => {
+		if (audio !== currentAudio && !audio.paused) {
+			audio.pause();
+			audio.currentTime = 0;
+		}
+	});
 }
 
-// Updates preview UI based on audio state
-function handleAudioStateChange(e) {
-	if (!e.target.classList.contains('search-results__preview-audio')) return;
+/**
+ * Update UI state
+ */
+function updateUiState(audio, isPlaying) {
+	const trackKit = audio.closest(SELECTORS.KIT);
+	const playBtn = trackKit.querySelector(SELECTORS.PLAY_BTN);
+	const waves = trackKit.querySelector(SELECTORS.WAVES);
 
-	const previewInner = e.target.closest('.search-results__preview-inner');
-	const previewBtn = previewInner.querySelector('.search-results__preview-btn');
-	const wave = previewInner.querySelector('.search-results__preview-wave');
-
-	switch (e.type) {
-		case 'play':
-			previewBtn.classList.add('playing');
-			wave.classList.add('is-playing');
-			break;
-
-		case 'pause':
-		case 'ended':
-			previewBtn.classList.remove('playing');
-			wave.classList.remove('is-playing');
-			e.target.currentTime = 0;
-			break;
-	}
+	playBtn.classList.toggle(SELECTORS.IS_PLAYING, isPlaying);
+	waves.classList.toggle(SELECTORS.IS_PLAYING, isPlaying);
 }
 
-// Initialize audio player
+/**
+ * Initialize audio player
+ */
+const audio = new Audio();
 export function initAudioPlayer() {
-	// Handles preview button clicks
-	document.addEventListener(
-		'click',
-		(e) => {
-			const previewBtn = e.target.closest('.search-results__preview-btn');
-			if (!previewBtn) return;
+	document.addEventListener('click', (e) => {
+		const playBtn = e.target.closest('.track__play');
+		if (!playBtn) return;
 
-			const targetPreviewInner = previewBtn.closest('.search-results__preview-inner');
-			const targetAudio = targetPreviewInner.querySelector('.search-results__preview-audio');
+		const url = playBtn.dataset.previewUrl;
 
-			const audioAll = document.querySelectorAll('.search-results__preview-audio');
-			audioAll.forEach((otherAudio) => {
-				if (otherAudio !== targetAudio && !otherAudio.paused) {
-					otherAudio.pause();
-					otherAudio.currentTime = 0;
-				}
-			});
-
-			toggleAudio(targetAudio);
-		},
-		true
-	);
-
-	// Syncs UI state with audio events
-const previewStates = ['play', 'pause', 'ended'];
-previewStates.forEach((state) => {
-	document.addEventListener(state, handleAudioStateChange, true);
-});
+		if (audio.src === url && !audio.paused) {
+			audio.pause();
+		} else {
+			audio.src = url;
+			audio.play();
+		}
+	});
 }
+
+/**
+ * Audio state events
+ */
+document.addEventListener(
+	'play',
+	(e) => {
+		if (!e.target.matches(SELECTORS.AUDIO)) return;
+		updateUiState(e.target, true);
+	},
+	true,
+);
+
+document.addEventListener('pause', (e) => {
+	if (!e.target.matches(SELECTORS.AUDIO)) return;
+	updateUiState(e.target, false);
+});
+
+document.addEventListener('ended', (e) => {
+	if (!e.target.matches(SELECTORS.AUDIO)) return;
+	e.target.currentTime = 0;
+	updateUiState(e.target, false);
+});

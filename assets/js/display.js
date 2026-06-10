@@ -1,91 +1,105 @@
-// Creates a table row for a single track
-function createTrackRows(track) {
-	return `
-		<tr>
-			<td class="search-results__album">
-				<img src="${track.artworkUrl100}" alt="${track.collectionName}">
-			</td>
-			<td class="search-results__track-title">
-				<span class="search-results__track-title-text">${track.trackName}</span>
-				<button class="search-results__track-title-copy-btn" data-copy-text="${track.trackName}">
-					<i class="fa-regular fa-clone"></i>
-					<i class="fa-solid fa-check"></i>
-				</button>
-			</td>
-			<td class="search-results__artist">
-				<span class="search-results__artist-text">${track.artistName}</span>
-				<button class="search-results__artist-copy-btn" data-copy-text="${track.artistName}">
-					<i class="fa-regular fa-clone"></i>
-					<i class="fa-solid fa-check"></i>
-				</button>
-			</td>
-			<td class="search-results__preview">
-				<div class="search-results__preview-inner">
-					<audio src="${track.previewUrl}" class="search-results__preview-audio"></audio>
-					<button class="search-results__preview-btn">
-						<i class="bi bi-play-circle"></i>
-						<i class="bi bi-pause-circle"></i>
-					</button>
-					<div class="search-results__preview-wave">
-  						<span class="search-results__preview-wave-bar"></span>
-  						<span class="search-results__preview-wave-bar"></span>
-  						<span class="search-results__preview-wave-bar"></span>
-  						<span class="search-results__preview-wave-bar"></span>
-  					</div>
-				</div>
-			</td>
-		</tr>
-	`;
-}
+/**
+ * Track row template
+ */
+const renderTrackRow = (track) => `
+	<tr class="track">
+    <td class="track__album">
+      <img src="${track.artworkUrl100}" alt="${track.collectionName}">
+    </td>
+    <td class="track__name">
+      <span class="track__name-txt">${track.trackName}</span>
+      <button class="track__name-copy" data-copy-text="${track.trackName}">
+        <i class="fa-regular fa-clone"></i>
+        <i class="fa-solid fa-check"></i>
+      </button>
+    </td>
+    <td class="track__artist">
+      <span class="track__artist-txt">${track.artistName}</span>
+      <button class="track__artist-copy" data-copy-text="${track.artistName}">
+        <i class="fa-regular fa-clone"></i>
+        <i class="fa-solid fa-check"></i>
+      </button>
+    </td>
+    <td class="track__preview">
+      <div class="track__kit">
+        <button class="track__play" data-preview-url="${track.previewUrl}">
+          <i class="bi bi-play-circle"></i>
+          <i class="bi bi-pause-circle"></i>
+        </button>
+        <div class="track__waves">
+            ${'<span class="track__bar"></span>'.repeat(4)}
+          </div>
+      </div>
+    </td>
+  </tr>
+`;
 
-// Creates an HTML table structure for displaying tracks
-export function createTrackTable(tracks) {
-	const tableHeader = `
-		<table class="search-results__table">
-			<thead>
-				<tr>
-					<th>Album</th>
-					<th>Track Title</th>
-					<th>Artist</th>
-					<th>Preview</th>
-				</tr>
-			</thead>
-			<tbody id="track-list">`;
 
-	const trackRows = tracks.map((track) => {
-		return createTrackRows(track);
-	});
+/**
+ * Create a track table
+ */
+const createTrackTable = (tracks) => `
+	<table class="tracks">
+    <thead class="tracks__header">
+      <tr>
+        <th class="tracks__label">Album</th>
+        <th class="tracks__label">Track Title</th>
+        <th class="tracks__label">Artist</th>
+        <th class="tracks__label">Preview</th>
+      </tr>
+    </thead>
+    <tbody class="tracks__content">${tracks.map(renderTrackRow).join('')}</tbody>
+  </table>
+`;
 
-	const tableFooter = `
-			</tbody>
-		</table>
-	`;
 
-	return tableHeader + trackRows.join('') + tableFooter;
-}
+/**
+ * Helper Function: get a container
+ *
+ */
+const getContainer = (countryCode) =>
+	document.querySelector(`.search__results[data-country="${countryCode}"]`);
 
-// Displays search results in the appropriate country tab
+
+/**
+ * Display results
+ *
+ * @param {Array} tracks
+ * @param {string} countryCode
+ * @return {void}
+ */
 export function displayResults(tracks, countryCode) {
-	const resultsContainer = document.querySelector(`.search-results[data-country="${countryCode}"]`);
-	resultsContainer.innerHTML = '';
+	const container = getContainer(countryCode);
+	if (!container) return;
 
 	if (tracks.length === 0) {
-		resultsContainer.innerHTML = '<p>No results.</p>';
+		container.innerHTML = '<p class="search__nothing">No results.</p>';
 		return;
 	}
-
-	resultsContainer.insertAdjacentHTML('beforeend', createTrackTable(tracks));
+	container.innerHTML = createTrackTable(tracks);
 }
 
-// Displays a loading text
+
+/**
+ * Show loading text
+ *
+ * @param {string} countryCode
+ * @return {void}
+ */
 export function showLoading(countryCode) {
-	const resultsContainer = document.querySelector(`.search-results[data-country="${countryCode}"]`);
-	resultsContainer.innerHTML = '<p class="loading">Searching...</p>';
+	const container = getContainer(countryCode);
+	if (container) container.innerHTML = '<p class="search__loading">Searching...</p>';
 }
 
-// Displays an error text
+
+/**
+ * Show error text
+ *
+ * @param {string} countryCode
+ * @param {string} message
+ * @return {void}
+ */
 export function showError(countryCode, message = 'Failed to load music. Please try again.') {
-	const resultsContainer = document.querySelector(`.search-results[data-country="${countryCode}"]`);
-	resultsContainer.innerHTML = `<p class="error">${message}</p>`;
+	const container = getContainer(countryCode);
+	if (container) container.innerHTML = `<p class="search__error">${message}</p>`;
 }
-

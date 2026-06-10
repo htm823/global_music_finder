@@ -1,117 +1,119 @@
 'use strict';
 
-import{ fetchMultipleArtists, searchByUserQuery } from './api.js';
+import { fetchMultipleArtists, searchMusic } from './api.js';
 import { displayResults, showLoading, showError } from './display.js';
 import { initAudioPlayer } from './audioPlayer.js';
 import { initClipboard } from './clipboard.js';
 import { initThemeSwitcher } from './themeSwitcher.js';
+import { initTabSwitcher } from './tab.js';
 
-initThemeSwitcher();
+/**
+ * Initialize
+ */
+const init = () => {
+	initThemeSwitcher();
 
-// Load default artists
+	initTabSwitcher();
+
+	initAudioPlayer();
+
+	initClipboard();
+
+	initSearchForms();
+
+	setupTabSwitching();
+
+	fetchInitialMusicData();
+};
+
+/**
+ * Load default tracks
+ *
+ * @param {string} countryCode
+ */
 async function loadDefaultContent(countryCode) {
 	showLoading(countryCode);
-
 	try {
 		const tracks = await fetchMultipleArtists(countryCode);
 		displayResults(tracks, countryCode);
 	} catch (error) {
-		console.error('Error loading default content:', error);
+		console.error(`Error loading default content for ${countryCode}`, error);
 		showError(countryCode);
 	}
 }
 
-// Execute user search
+/**
+ * Execute search
+ *
+ * @param {string} searchTerm
+ * @param {string} countryCode
+ * @return {void}
+ */
 async function executeSearch(searchTerm, countryCode) {
 	showLoading(countryCode);
-
 	try {
-		const results = await searchByUserQuery(searchTerm, countryCode);
+		const results = await searchMusic(searchTerm, countryCode);
 		displayResults(results, countryCode);
 	} catch (error) {
-		console.error('Search error:', error);
+		console.error('Search error: ', error);
 		showError(countryCode, 'Search failed. Please try again.');
 	}
 }
 
-// Set up search forms
+/**
+ * Setup search forms
+ */
 function setupSearchForm(form, countryCode) {
-	const searchInput = form.querySelector('.search-form__input');
-
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
+		const input = form.querySelector('.search__input');
+		const term = input.value.trim();
+		input.value = term;
 
-		const searchTerm = searchInput.value.trim();
-		searchInput.value = searchTerm;
-
-		if (!searchTerm) {
-			await loadDefaultContent(countryCode);
-		} else {
-			await executeSearch(searchTerm, countryCode);
-		}
+		term ? await executeSearch(term, countryCode) : await loadDefaultContent(countryCode);
 	});
 }
 
-// Initialise search forms
+/**
+ * Initialize search forms
+ */
 function initSearchForms() {
-	const languageContents = document.querySelectorAll('.language__content');
-
-	languageContents.forEach(content => {
-		const form = content.querySelector('.search-form');
-		const resultsContainer = content.querySelector('.search-results');
-		const countryCode = resultsContainer.dataset.country;
-
-		setupSearchForm(form, countryCode);
+	document.querySelectorAll('.search__content').forEach((content) => {
+		const form = content.querySelector('.search__form');
+		const countryCode = content.querySelector('.search__results')?.dataset.country;
+		if (form && countryCode) setupSearchForm(form, countryCode);
 	});
 }
 
-// Load default contents when switching tabs
+/**
+ * Setup tab switching
+ */
 function setupTabSwitching() {
-	const radios = document.querySelectorAll('.language__radio');
-	const loadedTabs = new Set();
+	const loadedTabs = new Set(['english']);
 
-	radios.forEach(radio => {
-		radio.addEventListener('change', () => {
-			if (radio.checked) {
-				const tabName = radio.id;
+	document.querySelectorAll('.sidebar__radio').forEach((radio) => {
+		radio.addEventListener('change', (e) => {
+			if (!e.target.checked || loadedTabs.has(e.target.id)) return;
 
-				if (!loadedTabs.has(tabName)) {
-					const content = document.querySelector(`.language__content[data-tab="${tabName}"]`);
-					const resultsContainer = content.querySelector('.search-results');
-					const countryCode = resultsContainer.dataset.country;
+			const content = document.querySelector(`.search__content[data-tab="${e.target.id}"]`);
+			const countryCode = content?.querySelector('.search__results')?.dataset.country;
 
-					loadDefaultContent(countryCode);
-					loadedTabs.add(tabName);
-				}
+			if (countryCode) {
+				loadDefaultContent(countryCode);
+				loadedTabs.add(e.target.id);
 			}
 		});
+
+		loadDefaultContent('gb');
 	});
-
-	loadDefaultContent('gb');
-	loadedTabs.add('english');
 }
 
-// Fetch music data for all supported countries
-async function fetchMusicData() {
-	try {
-		const countryCodes = ['gb', 'es', 'de', 'fr', 'jp', 'kr', 'tw'];
-
-		for (const countryCode of countryCodes) {
-			const allTracks = await fetchMultipleArtists(countryCode);
-			displayResults(allTracks, countryCode);
-		}
-	} catch (error) {
-		console.error('Error:', error);
-	}
+/**
+ * Fetch initial music data
+ */
+async function fetchInitialMusicData() {
+	const countryCodes = ['gb', 'es', 'de', 'fr', 'jp', 'kr', 'tw', 'hi'];
+	await Promise.all(countryCodes.map((code) => loadDefaultContent(code)));
 }
 
-// Initialise the application
-fetchMusicData();
-
-// Enables copy-to-clipboard functionality
-document.addEventListener('DOMContentLoaded', () => {
-	initAudioPlayer();
-	initClipboard();
-	initSearchForms();
-	setupTabSwitching();
-});
+init();
