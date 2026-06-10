@@ -99,7 +99,7 @@
 					<div class="search__content is-active" data-tab="english">
 						<form class="search__form">
 							<div class="search__box">
-								<input id="search-en" class="search__input" type="text" placeholder="Artist or track title">
+								<input id="search-en" class="search__input" type="text" placeholder="Artist or track title" autocomplete="off">
 								<label for="search-en" class="search__label">Search for an artist or a track</label>
 							</div>
 							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -113,7 +113,7 @@
 					<div class="search__content" data-tab="spanish">
 						<form class="search__form">
 							<div class="search__box">
-								<input id="search-es" class="search__input" type="text" placeholder="Artist or track title">
+								<input id="search-es" class="search__input" type="text" placeholder="Artist or track title" autocomplete="off">
 								<label for="search-es" class="search__label">Search for an artist or a track</label>
 							</div>
 							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -127,7 +127,7 @@
 					<div class="search__content" data-tab="german">
 						<form class="search__form">
 							<div class="search__box">
-								<input id="search-de" class="search__input" type="text" placeholder="Artist or track title">
+								<input id="search-de" class="search__input" type="text" placeholder="Artist or track title" autocomplete="off">
 								<label for="search-de" class="search__label">Search for an artist or a track</label>
 							</div>
 							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -141,7 +141,7 @@
 					<div class="search__content" data-tab="french">
 						<form class="search__form">
 							<div class="search__box">
-								<input id="search-fr" class="search__input" type="text" placeholder="Artist or track title">
+								<input id="search-fr" class="search__input" type="text" placeholder="Artist or track title" autocomplete="off">
 								<label for="search-fr" class="search__label">Search for an artist or a track</label>
 							</div>
 							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -155,7 +155,7 @@
 					<div class="search__content" data-tab="korean">
 						<form class="search__form">
 							<div class="search__box">
-								<input id="search-kr" class="search__input" type="text" placeholder="Artist or track title">
+								<input id="search-kr" class="search__input" type="text" placeholder="Artist or track title" autocomplete="off">
 								<label for="search-kr" class="search__label">Search for an artist or a track</label>
 							</div>
 							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -169,7 +169,7 @@
 					<div class="search__content" data-tab="japanese">
 						<form class="search__form">
 							<div class="search__box">
-								<input id="search-jp" class="search__input" type="text" placeholder="Artist or track title">
+								<input id="search-jp" class="search__input" type="text" placeholder="Artist or track title" autocomplete="off">
 								<label for="search-jp" class="search__label">Search for an artist or a track</label>
 							</div>
 							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -183,7 +183,7 @@
 					<div class="search__content" data-tab="mandarin">
 						<form class="search__form">
 							<div class="search__box">
-								<input id="search-tw" class="search__input" type="text" placeholder="Artist or track title">
+								<input id="search-tw" class="search__input" type="text" placeholder="Artist or track title" autocomplete="off">
 								<label for="search-tw" class="search__label">Search for an artist or a track</label>
 							</div>
 							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -197,7 +197,7 @@
 					<div class="search__content" data-tab="hindi">
 						<form class="search__form">
 							<div class="search__box">
-								<input id="search-in" class="search__input" type="text" placeholder="Artist or track title">
+								<input id="search-in" class="search__input" type="text" placeholder="Artist or track title" autocomplete="off">
 								<label for="search-in" class="search__label">Search for an artist or a track</label>
 							</div>
 							<button type="submit" class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -221,25 +221,7 @@
 			</footer>
 		</main>
 	</div>
-	<script src="assets/js/main.js" type="module"></script>
-	<script>
-		// Move code to a separate file later
-		const radios = document.querySelectorAll('.sidebar__radio');
-		const contents = document.querySelectorAll('.search__content');
-
-		radios.forEach(radio => {
-			radio.addEventListener('change', (e) => {
-				contents.forEach(content => content.classList.remove('is-active'));
-
-				const selectedId = e.target.id;
-
-				const activeContent = document.querySelector(`.search__content[data-tab="${selectedId}"]`);
-				if (activeContent) {
-					activeContent.classList.add('is-active');
-				}
-			});
-		});
-	</script>
+	<script src="assets/js/main.js" type="module" defer></script>
 </body>
 
 </html>
