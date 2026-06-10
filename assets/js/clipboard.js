@@ -1,12 +1,21 @@
-// Show a toast when successfully copied or failed
-function showToast(message, type = 'success') {
-	const toast = document.getElementById('toast');
+const TOAST_ID = 'toast';
+const COPY_SELECTOR = '[data-copy-text]';
+
+/**
+ * Toast
+ *
+ * @param {string} message
+ * @param {boolean} isError
+ * @return {void}
+ */
+function showToast(message, isError = false) {
+	const toast = document.getElementById(TOAST_ID);
 	if (!toast) return;
 
-	const icon =
-		(type === 'success')
-		? '<i class="fa-solid fa-circle-check"></i>'
-		: '<i class="fa-solid fa-circle-xmark"></i>';
+	const type = isError ? 'error' : 'success';
+	const icon = isError
+		? '<i class="fa-solid fa-circle-xmark"></i>'
+		: '<i class="fa-solid fa-circle-check"></i>';
 
 	toast.innerHTML = `${icon} ${message}`;
 	toast.classList.add('is-visible', `is-${type}`);
@@ -16,29 +25,24 @@ function showToast(message, type = 'success') {
 	}, 1500);
 }
 
-// Initialise copy buttons
+/**
+ * Initialize clipboard
+ */
 export function initClipboard() {
-	const searchResultsContainers = document.querySelectorAll('.search-results');
+	document.addEventListener('click', async (e) => {
+		const copyBtn = e.target.closest(COPY_SELECTOR);
+		if (!copyBtn) return;
 
-	searchResultsContainers.forEach((container) => {
-		container.addEventListener('click', async (e) => {
-			const copyBtn = e.target.closest('[data-copy-text]');
-			if (!copyBtn) return;
+		try {
+			await navigator.clipboard.writeText(copyBtn.dataset.copyText);
 
-			try {
-				await navigator.clipboard.writeText(copyBtn.dataset.copyText);
+			copyBtn.classList.add('is-copied');
+			setTimeout(() => copyBtn.classList.remove('is-copied'), 1500);
 
-				copyBtn.classList.add('is-copied');
-				setTimeout(() => {
-					copyBtn.classList.remove('is-copied');
-				}, 1500);
-
-				showToast('Copied');
-			} catch (error) {
-				console.error('Copy failed:', error);
-
-				showToast('Copy failed', 'error');
-			}
-		});
+			showToast('Copied!');
+		} catch (error) {
+			console.error('Copy failed: ', error);
+			showToast('Copy failed', true);
+		}
 	});
 }
