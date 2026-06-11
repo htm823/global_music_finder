@@ -8,6 +8,10 @@ I built this app to solve a personal frustration: searching for music in languag
 ## 🚀 Site URL
 https://global-music-finder.vercel.app/
 
+## 📸 Preview
+<img width="400" height="179" alt="gmf_2" src="https://github.com/user-attachments/assets/e32b9d7f-af16-401c-a1be-7a95932e04ec" />
+
+
 ## ✨ Features
 - **Multilingual search**: Discover music across 8 languages: English, Spanish, German, French, Korean, Japanese, Mandarin, and Hindi.
 - **Language-specific navigation**: Switch between languages using color-coded tabs.
