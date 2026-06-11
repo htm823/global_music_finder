@@ -25,7 +25,7 @@ $languages: english, spanish, german, french, korean, japanese, mandarin, hindi;
 body {
 	background-color: var(--bg-color-300);
 	font-size: var(--font-size-200);
-	color: var(--text-color-300);
+	color: var(--text-color-100);
 	font-family: var(--font-family);
 }
 
@@ -36,8 +36,17 @@ body {
 }
 
 .sidebar {
-	width: 18%;
+	width: 300px;
 	font-size: var(--font-size-300);
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	// &__inner {
+	// 	position: fixed;
+	// 	top: 0;
+	// 	left: 0;
+	// }
 
 	&__logo {
 		display: block;
@@ -76,8 +85,13 @@ body {
 }
 
 .search {
-	width: 82%;
-	padding: 4.6rem 1.2rem;
+	width: 100%;
+	padding: 4.6rem 0 0 30rem;
+
+	&__inner {
+		width: 90%;
+		margin: 0 auto;
+	}
 
 	&__form {
 		display: flex;
@@ -139,6 +153,15 @@ body {
 			display: block;
 		}
 	}
+
+	.footer {
+		padding: 0 0 6.4rem;
+
+		&__inner {
+			width: 90%;
+			margin: 0 auto;
+		}
+	}
 }
 
 .footer {
@@ -190,7 +213,6 @@ body {
 // Policy
 .policy {
 	padding: 3.2rem 0;
-	color: var(--text-color-100);
 
 	&__title {
 		font-size: var(--font-size-400);
@@ -218,17 +240,111 @@ body {
 		&::before {
 			content: '-';
 			display: block;
-			margin: 0 .8rem 0 0;
+			margin: 0 0.8rem 0 0;
 		}
 	}
 
 	&__link {
 		color: var(--primary-100);
-		transition: opacity .3s;
+		transition: opacity 0.3s;
 		cursor: pointer;
 
 		&:hover {
 			opacity: 0.8;
+		}
+	}
+}
+
+.tracks {
+	padding: 6.4rem 0;
+	width: 100%;
+
+	&__label {
+		width: 38%;
+		text-align: left;
+		color: var(--text-color-300);
+		padding: 0 0 1.6rem;
+	}
+}
+
+.square {
+	width: 12%;
+}
+
+.track {
+	&__album {
+		padding: 3.2rem 0;
+	}
+
+	&__name {
+		padding: 0 4.8rem 0 0;
+	}
+
+	&__artist {
+		padding: 0 4.8rem 0 0;
+	}
+
+	&__copy {
+		background-color: transparent;
+		color: var(--primary-300);
+		font-size: var(--font-size-300);
+		border: none;
+		cursor: pointer;
+		transition: color .3s;
+
+		&:hover {
+			color: var(--primary-100);
+		}
+
+		.fa-clone {
+			display: inline-block;
+		}
+
+		.fa-check {
+			display: none;
+		}
+
+		&.is-copied {
+			.fa-check {
+				display: inline-block;
+				color: var(--primary-100);
+			}
+
+			.fa-clone {
+				display: none;
+			}
+		}
+	}
+
+	&__play {
+		cursor: pointer;
+		transition: color 0.3s;
+		background-color: transparent;
+		color: var(--primary-300);
+		border: none;
+		font-size: 3.2rem;
+
+		&:hover {
+			color: var(--primary-100);
+		}
+
+		// In progress
+		.bi-play-circle {
+			display: inline-block;
+		}
+
+		.bi-pause-circle {
+			display: none;
+		}
+
+		&.is-playing {
+			.bi-play-circle {
+				display: none;
+			}
+
+			.bi-pause-circle {
+				display: inline-block;
+			}
 		}
 	}
 }
