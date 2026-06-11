@@ -9,7 +9,7 @@ I built this app to solve a personal frustration: searching for music in languag
 https://global-music-finder.vercel.app/
 
 ## 📸 Preview
-<img width="400" height="179" alt="gmf_2" src="https://github.com/user-attachments/assets/e32b9d7f-af16-401c-a1be-7a95932e04ec" />
+<img width="1000" height="448" alt="gmf_2" src="https://github.com/user-attachments/assets/e32b9d7f-af16-401c-a1be-7a95932e04ec" />
 
 
 ## ✨ Features
