@@ -1,3 +1,5 @@
+// This file is in progress
+
 const TOAST_ID = 'toast';
 const COPY_SELECTOR = '[data-copy-text]';
 

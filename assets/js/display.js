@@ -8,14 +8,14 @@ const renderTrackRow = (track) => `
     </td>
     <td class="track__name">
       <span class="track__name-txt">${track.trackName}</span>
-      <button class="track__name-copy" data-copy-text="${track.trackName}">
+      <button class="track__copy" data-copy-text="${track.trackName}">
         <i class="fa-regular fa-clone"></i>
         <i class="fa-solid fa-check"></i>
       </button>
     </td>
     <td class="track__artist">
       <span class="track__artist-txt">${track.artistName}</span>
-      <button class="track__artist-copy" data-copy-text="${track.artistName}">
+      <button class="track__copy" data-copy-text="${track.artistName}">
         <i class="fa-regular fa-clone"></i>
         <i class="fa-solid fa-check"></i>
       </button>
@@ -34,32 +34,28 @@ const renderTrackRow = (track) => `
   </tr>
 `;
 
-
 /**
  * Create a track table
  */
 const createTrackTable = (tracks) => `
 	<table class="tracks">
     <thead class="tracks__header">
-      <tr>
-        <th class="tracks__label">Album</th>
-        <th class="tracks__label">Track Title</th>
-        <th class="tracks__label">Artist</th>
-        <th class="tracks__label">Preview</th>
+      <tr class="tracks__labels">
+        <th class="tracks__label square">album</th>
+        <th class="tracks__label">track title</th>
+        <th class="tracks__label">artist</th>
+        <th class="tracks__label square">preview</th>
       </tr>
     </thead>
     <tbody class="tracks__content">${tracks.map(renderTrackRow).join('')}</tbody>
   </table>
 `;
 
-
 /**
  * Helper Function: get a container
  *
  */
-const getContainer = (countryCode) =>
-	document.querySelector(`.search__results[data-country="${countryCode}"]`);
-
+const getContainer = (countryCode) => document.querySelector(`.search__results[data-country="${countryCode}"]`);
 
 /**
  * Display results
@@ -79,7 +75,6 @@ export function displayResults(tracks, countryCode) {
 	container.innerHTML = createTrackTable(tracks);
 }
 
-
 /**
  * Show loading text
  *
@@ -90,7 +85,6 @@ export function showLoading(countryCode) {
 	const container = getContainer(countryCode);
 	if (container) container.innerHTML = '<p class="search__loading">Searching...</p>';
 }
-
 
 /**
  * Show error text

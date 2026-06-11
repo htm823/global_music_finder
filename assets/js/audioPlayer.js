@@ -1,6 +1,7 @@
 'use strict';
 
-// HTML class names
+// This file is in progress
+
 const SELECTORS = {
 	KIT: '.track__kit',
 	AUDIO: 'track__audio',
@@ -13,7 +14,7 @@ const SELECTORS = {
  * Stop all other audios
  */
 function stopAllOtherAudios(currentAudio) {
-	const audios = document.querySelectorAll(SELECTORS.AUTIO);
+	const audios = document.querySelectorAll(SELECTORS.AUDIO);
 	audios.forEach((audio) => {
 		if (audio !== currentAudio && !audio.paused) {
 			audio.pause();
@@ -57,9 +58,7 @@ export function initAudioPlayer() {
 /**
  * Audio state events
  */
-document.addEventListener(
-	'play',
-	(e) => {
+document.addEventListener('play', (e) => {
 		if (!e.target.matches(SELECTORS.AUDIO)) return;
 		updateUiState(e.target, true);
 	},
