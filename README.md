@@ -1,74 +1,34 @@
-# 🌍 Global Music Finder
+# Global Music Finder
 
-A music search app to find and copy song titles and artist names from around the world.
+A global music search tool that makes it easy to discover artists and tracks from around the world. With built-in language-specific navigation, you can effortlessly browse, preview, and copy track information in any language.
 
-## 📄 Usage & License
+## 💭 Background
+I built this app to solve a personal frustration: searching for music in languages like Chinese or Korean was difficult because I couldn't type the characters. I wanted to create a tool that allows anyone to explore and discover music from different cultures with ease, regardless of their language skills.
 
-This repository is public for portfolio and evaluation purposes only.
-
-- This project is not open source
-- Commercial use is not permitted
-
-All rights reserved.
-
-## 🚀 Live Demo
-
-https://global-music-finder.vercel.app/  
-
-### 🎬 Demo Preview
-
-https://github.com/user-attachments/assets/17c0bc08-8366-405c-ab6c-c704640160a4
-
-## 📘 Overview
-
-This project is a personal portfolio piece created to demonstrate my approach to UI design, problem-solving, adn clean implementation. 
-It focuses on clarity, maintainability, and real-world usability rather than excessive complexity.
-
-## 💡 Motivation – Why I Built This
-
-I started this project because:
-
-- I wanted to create a music app that allows users to explore songs and artists from around the world.
-- I noticed that many existing services do not provide an easy way to copy track titles and artist names.
-- I wanted to design something that not only helps users discover music, but also makes it easier to reuse track titles and artist names. This is especially helpful when exploring music in languages that users cannot read or write.
-
-This project reflects how I think as a developer and the kind of products I aim to build in a professional environment.
-
-
-## 🎨 Design & Thought Process – How I Approached It
-
-When designing this project, I focused on the following principles:
-
-- **Visual grouping:** Content from the same category is placed close together to improve scannability and reduce cognitive load.
-- **Context-aware styling:** The CSS style changes depending on the selected country, making it immediately clear which country’s music is currently being explored.
-- **Visual clarity:** Colour, spacing, and typography were chosen to clearly indicate context and hierarchy.
-- **User orientation:** The interface is designed so users always understand where they are and what they are browsing.
-- **Iterative design process:** I started with hand-drawn sketches to explore layout and flow, then created rough drafts in Figma to evaluate colour balance and spacing.
-- **Accessibility and readability:** Font sizes and colour contrasts were selected with readability as the top priority.
-
-
-### 🧩 Key Decisions
-
-- I chose this architecture to make each feature’s JavaScript easier to understand, maintain, and extend over time.
-- I selected SCSS because it works well with the BEM methodology, allowing styles to remain structured and predictable as the project grows.
-- I built the project from scratch without using frameworks in order to deepen my understanding of core web technologies and have full control over the implementation.
-- I used the iTunes API because it does not require user registration and provides access to a wide variety of tracks and artists, making it suitable for quick exploration and prototyping.
+## 🚀 Site URL
+https://global-music-finder.vercel.app/
 
 ## ✨ Features
+- **Multilingual search**: Discover music across 8 languages: English, Spanish, German, French, Korean, Japanese, Mandarin, and Hindi.
+- **Language-specific navigation**: Switch between languages using color-coded tabs.
+- **Quick copy**: Copy track titles and artist names with one click.
+- **Built-in audio preview**: Preview tracks directly within the player.
+- **English-only Interface**: A simple and intuitive experience focused on ease of use.
 
-- **Country-based music search:** Search for songs and artists by country to explore regional music scenes.
-- **Curated default tracks:** By default, the app displays songs by well-known and representative artists from each country, helping users immediately understand the local music context.
-- **Copy track and artist names:** Easily copy track titles and artist names for reuse across platforms and languages.
-- **Track preview:** Listen to short previews to quickly discover new music.
+## 🛠 Tech Stack
+- HTML
+- SCSS(for BEM-based styling)
+- Vanilla JavaScript
+- iTunes Search API (for free, registration-free, and global music data)
 
-## 🔮 Planned Features (Future Improvements)
+## 🔮 Future Updates
+- **UI enhancements**: Refined colors, spacing and typography for a better user experience.
+- **Mobile-responsive design**: Fully optimized for a seamless experience on mobile devices.
+- **Interactive playback**: Added wave animations and dynamic play/pause icons.
+- **Copy feedback**: Added toast notifications to confirm when track info is copied. 
 
-- [ ] **Responsive design:** Improve usability across mobile, tablet, and desktop devices.
-- [ ] **Visual refinement:** Further enhance the design by refining colour choices and spacing for a more polished experience.
-
-This list reflects how I think about **iteration and long-term improvement**.
-
-## 🛠️ Tech Stack
-
-- **Languages:** HTML, SCSS (CSS), JavaScript  
-- **Tooling & Infrastructure:** Google Analytics (usage insights), Vercel (simple and fast deployment)
+## ⚖️ License & Usage
+- **Purpose**: Portfolio use only
+- **Accessibility**: Publicly accessible
+- **License**: **Not** open-source
+- **Restrictions**: **Do Not** copy, redistribute, or use the code for commercial or personal projects without explicit permission
