@@ -6,7 +6,7 @@
 
 言語別の楽曲検索、楽曲・アーティスト名のコピー、楽曲の試聴が可能。
 
-HTML、CSS (SCSS)、JavaScript、iTunes APIを用いて開発。
+HTML、SCSS、JavaScript、iTunes APIを用いて開発。
 
 ## Live Demo
 
@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/2e4a7bdc-1c9f-4aa2-925c-35cdb2a64355
 ## Tech Stack
 ### Frontend
 - HTML
-- CSS (SCSS)
+- SCSS
 - JavaScript
 
 ### API

@@ -34,7 +34,7 @@ Listen to track previews instantly, allowing users to discover new music without
 ## Tech Stack
 ### Frontend
 - HTML
-- CSS (SCSS)
+- SCSS
 - JavaScript
 
 ### API
